@@ -1,0 +1,135 @@
+title = 'gitleaks config'
+
+[[rules]]
+description = 'AWS Manager ID'
+tags = ['key', 'AWS']
+regex = '''(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}'''
+[[rules.whitelist]]
+description = 'ignore example aws key'
+regex = '''AKIAIO5FODNN7EXAMPLE.*'''
+
+[[rules]]
+description = 'AWS cred file info'
+tags = ['AWS']
+regex = '''(?i)(aws_access_key_id|aws_secret_access_key)(.{0,20})?=.[0-9a-zA-Z\/+]{20,40}'''
+
+[[rules]]
+description = 'AWS Secret Key'
+tags = ['key', 'AWS']
+regex = '''(?i)aws(.{0,20})?(?-i)['\"][0-9a-zA-Z\/+]{40}['\"]'''
+
+[[rules]]
+description = 'AWS MWS key'
+tags = ['key', 'AWS', 'MWS']
+regex = '''amzn\.mws\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'''
+
+[[rules]]
+description = 'Heroku API key'
+tags = ['key', 'Heroku']
+regex = '''(?i)heroku(.{0,20})?['"][0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}['"]'''
+
+[[rules]]
+description = 'Google API key'
+tags = ['key', 'Google']
+regex = '''AIza[0-9A-Za-z\\-_]{35}'''
+
+[[rules]]
+description = 'GitHub'
+tags = ['key', 'GitHub']
+regex = '''(?i)github(.{0,20})?(?-i)['\"][0-9a-zA-Z]{35,40}['\"]'''
+
+[[rules]]
+description = 'Slack'
+tags = ['key', 'Slack']
+regex = '''xox[baprs]-([0-9a-zA-Z]{10,48})?'''
+
+[[rules]]
+description = 'Slack Webhook'
+tags = ['key', 'slack']
+regex = '''https://hooks.slack.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}'''
+
+[[rules]]
+description = 'Twitter Secret Key'
+tags = ['key', 'Twitter']
+regex = '''(?i)twitter(.{0,20})?['\"][0-9a-z]{35,44}['\"]'''
+
+[[rules]]
+description = 'Twitter Client ID'
+tags = ['client', 'Twitter']
+regex = '''(?i)twitter(.{0,20})?['\"][0-9a-z]{18,25}['\"]'''
+
+[[rules]]
+description = 'Facebook Secret Key'
+tags = ['key', 'Facebook']
+regex = '''(?i)(facebook|fb)(.{0,20})?(?-i)['\"][0-9a-f]{32}['\"]'''
+
+[[rules]]
+description = 'Facebook Client ID'
+tags = ['key', 'Facebook']
+regex = '''(?i)(facebook|fb)(.{0,20})?['\"][0-9]{13,17}['\"]'''
+
+[[rules]]
+description = 'LinkedIn Client ID'
+tags = ['client', 'LinkedIn']
+regex = '''(?i)linkedin(.{0,20})?(?-i)['\"][0-9a-z]{12}['\"]'''
+
+[[rules]]
+description = 'LinkedIn Secret Key'
+tags = ['secret', 'LinkedIn']
+regex = '''(?i)linkedin(.{0,20})?['\"][0-9a-z]{16}['\"]'''
+
+[[rules]]
+description = 'MailChimp API key'
+tags = ['key', 'Mailchimp']
+regex = '''(?i)(mailchimp|mc)(.{0,20})?['"][0-9a-f]{32}-us[0-9]{1,2}['"]'''
+
+[[rules]]
+description = 'Mailgun API key'
+tags = ['key', 'Mailgun']
+regex = '''(?i)(mailgun|mg)(.{0,20})?['"][0-9a-z]{32}['"]'''
+
+[[rules]]
+description = 'Twilio API key'
+tags = ['key', 'Twilio']
+regex = '''(?i)twilio(.{0,20})?['\"][0-9a-f]{32}['\"]'''
+
+[[rules]]
+description = 'PayPal Braintree access token'
+tags = ['key', 'PayPal']
+regex = '''access_token\$production\$[0-9a-z]{16}\$[0-9a-f]{32}'''
+
+[[rules]]
+description = 'Stripe API key'
+tags = ['key', 'Stripe']
+regex = '''(?i)stripe(.{0,20})?['\"][sk|rk]_live_[0-9a-zA-Z]{24}'''
+
+[[rules]]
+description = 'Square access token'
+tags = ['key', 'Square']
+regex = '''sq0atp-[0-9A-Za-z\-_]{22}'''
+
+[[rules]]
+description = 'Square OAuth secret'
+tags = ['key', 'Square']
+regex = '''sq0csp-[0-9A-Za-z\\-_]{43}'''
+
+[[rules]]
+description = 'High Entropy'
+tags = ['entropy']
+regex = '''(?i)key(.{0,20})?['|"][0-9a-zA-Z]{16,45}['|"]'''
+[[rules.Entropies]]
+Min = '4.3'
+Max = '7.0'
+[[rules.whitelist]]
+description = 'Ignore ssh key and pems'
+file = '''(pem|ppk|env)$'''
+path = '''(.*)?ssh'''
+
+[[rules]]
+description = 'Files with keys and credentials'
+tags = ['key']
+fileNameRegex = '''(?i)(id_25519|id_rsa|passwd|pgpass|pem|key|shadow)'''
+
+[whitelist]
+description = 'Image whitelists'
+file = '''(.*?)(jpg|gif|doc|pdf|bin)$'''

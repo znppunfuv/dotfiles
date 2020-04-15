@@ -1,0 +1,5 @@
+--theme='Solarized (dark)'
+--style='numbers,changes,header'
+--italic-text=always
+--pager='less -FR'
+--map-syntax .ignore:.gitignore
