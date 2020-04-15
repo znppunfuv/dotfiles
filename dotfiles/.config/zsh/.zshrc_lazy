@@ -1,0 +1,140 @@
+if (( ${+commands[brew]} )); then
+    # Avoid the brew doctor warning: 'Putting non-prefixed hogehoge'
+    alias brew="env PATH=${(j':')path_default[@]} brew"
+fi
+
+# Repo: https://github.com/neovim/neovim
+if (( ${+commands[nvim]} )); then
+    export EDITOR='nvim'
+    alias e='nvim'
+fi
+
+# Repo: https://github.com/tmux/tmux
+if (( ${+commands[tmux]} )); then
+    alias tmux="tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf"
+    alias t='tmux attach || tmux new'
+    # Repo: https://github.com/tmux-plugins/tpm
+    alias tpm-update-plugins="${XDG_DATA_HOME}/tmux/plugin/tpm/bin/update_plugins all"
+fi
+
+# Repo: https://github.com/gpg/gnupg
+if (( ${+commands[gpg]} )); then
+    # Start the gpg-agent if not already running
+    if ! pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
+      gpg-connect-agent /bye >/dev/null 2>&1
+    fi
+    # Set SSH to use gpg-agent
+    unset SSH_AGENT_PID
+    if [[ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]]; then
+        export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+    fi
+    # Set GPG TTY
+    export GPG_TTY="$(tty)"
+    # Refresh gpg-agent tty in case user switches into an X session
+    gpg-connect-agent updatestartuptty /bye >/dev/null
+fi
+
+# Repo: https://github.com/bootandy/dust
+if (( ${+commands[dust]} )); then
+    alias du='dust'
+fi
+
+# Repo: https://github.com/ogham/exa
+if (( ${+commands[exa]} )); then
+    alias ls='exa --group-directories-first --icons --classify'
+    alias la='exa -a --group-directories-first --icons --classify'
+    alias ll='exa -hal --group-directories-first --icons --classify'
+    alias tree='exa --tree --group-directories-first --icons --classify -I "node_modules"'
+fi
+
+# Repo: https://github.com/cjbassi/ytop
+if (( ${+commands[ytop]} )); then
+    alias top='ytop -c solarized-dark'
+fi
+
+# Repo: https://github.com/github/hub
+if (( ${+commands[hub]} )); then
+    . <(hub alias -s)
+fi
+
+# Repo: https://github.com/jesseduffield/lazygit
+if (( ${+commands[lazygit]} )); then
+    alias lg='lazygit'
+fi
+
+# Repo: https://github.com/motemen/ghq
+export GHQ_ROOT="${XDG_DATA_HOME}/ghq"
+
+# Repo: https://github.com/junegunn/fzf
+if (( ${+commands[fzf]} )); then
+    # Doc: https://github.com/junegunn/fzf/wiki/Color-schemes#alternate-solarized-lightdark-theme
+    export FZF_DEFAULT_OPTS='
+        --color fg:-1,bg:-1,hl:33,fg+:254,bg+:235,hl+:33
+        --color info:136,prompt:136,pointer:230,marker:230,spinner:136
+        --reverse
+    '
+    # Doc: https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings#changing-the-layout
+    export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+    # git switch branch
+    gswb() {
+        local -r branches="$(command git --no-pager branch --all | command grep -v 'HEAD')"
+        local -r branch="$(echo "${branches}" | command fzf-tmux +m)" &&
+            command git checkout "$(
+                echo "${branch}" | \
+                    command sed 's/.* //' | \
+                    command sed 's#remotes/[^/]*/##'
+            )"
+    }
+    # git checkout tag
+    gcot() {
+        local -r tag="$(
+            command git --no-pager tag | \
+                command fzf-tmux +m --ansi --preview='command git show --color=always {}'
+            )" &&
+            command git checkout "${tag}"
+    }
+fi
+
+### Docker ###
+export COMPOSE_DOCKER_CLI_BUILD=1
+export DOCKER_BUILDKIT=1
+
+### asdf-vm ###
+# Repo: https://github.com/asdf-vm/asdf
+export ASDF_DATA_DIR="${XDG_DATA_HOME}/asdf"
+. "${ASDF_DATA_DIR}/asdf.sh"
+. "${ASDF_DATA_DIR}/completions/asdf.bash"
+export ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/asdfrc"
+
+### direnv ###
+# Repo: https://github.com/direnv/direnv
+if (( ${+commands[direnv]} )); then
+    . <(direnv hook zsh)
+fi
+
+### Node.js ###
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
+
+### Python ###
+if (( ${+commands[pip]} )); then
+    export PYTHONUSERBASE="${XDG_DATA_HOME}/pip"
+    path=("${PYTHONUSERBASE}/bin"(N-/) "${path[@]}")
+    . <(pip completion --zsh)
+fi
+# Poetry
+# Repo: https://github.com/sdispater/poetry
+export POETRY_HOME="${XDG_DATA_HOME}/poetry"
+path=("${POETRY_HOME}/bin"(N-/) "${path[@]}")
+
+### Rust ###
+export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
+export CARGO_HOME="${XDG_DATA_HOME}/cargo"
+export RUST_BACKTRACE=1
+path=("${CARGO_HOME}/bin"(N-/) "${path[@]}")
+
+# GCP
+if (( ${+commands[gcloud]} )) && [[ "${OSTYPE}" =~ ^darwin.*$ ]]; then
+    local -r gcloud_path="$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
+    . "${gcloud_path}/path.zsh.inc"
+    . "${gcloud_path}/completion.zsh.inc"
+fi
