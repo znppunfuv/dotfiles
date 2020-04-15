@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+set -euo pipefail
+export LC_ALL='C'
+export LANG='C'
+export IFS=$' \t\n'
+
+readonly PROTECTED_BRANCHES_REGEX='^(master)'
+readonly PREVENT_FORCE_BRANCHES_REGEX='^(master|develop|dev|release-*)'
+readonly PUSH_COMMAND="$(ps -ocommand= -p "${PPID}")"
+readonly DESTRUCTIVE_REGEX='--force|--delete|\-f|\-d'
+
+# Ref: https://git-scm.com/docs/githooks#_pre_push
+# shellcheck disable=SC2034
+while read -r local_ref local_sha remote_ref remote_sha; do
+    TARGET_BRANCH="${remote_ref##refs/heads/}"
+
+    ### Prevents pushing to master ###
+    if [[ "${TARGET_BRANCH}" =~ ${PROTECTED_BRANCHES_REGEX} ]]; then
+        while :; do
+            # Calling `exec </dev/tty` assigns standard input to the keyboard.
+            read -rp "Really wants to pushing to ${TARGET_BRANCH}? (y/n): " </dev/tty
+            if [[ "${REPLY}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+                break
+            elif [[ "${REPLY}" =~ ^([nN][oO]|[nN])$ ]]; then
+                echo 'Push to master stopped.'
+                exit 1
+            else
+                echo 'Invalid input.'
+            fi
+        done
+    fi
+
+    ### Prevents force-pushing to protected branches ###
+    if [[ "${TARGET_BRANCH}" =~ ${PREVENT_FORCE_BRANCHES_REGEX} ]] &&
+        [[ "${PUSH_COMMAND}" =~ ${DESTRUCTIVE_REGEX} ]]; then
+        while :; do
+            # Calling `exec </dev/tty` assigns standard input to the keyboard.
+            read -rp "Really wants to force-pushing to ${TARGET_BRANCH}? (y/n): " </dev/tty
+            if [[ "${REPLY}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+                break
+            elif [[ "${REPLY}" =~ ^([nN][oO]|[nN])$ ]]; then
+                echo 'Force-pushing stopped.'
+                exit 1
+            else
+                echo 'Invalid input.'
+            fi
+        done
+    fi
+done
+
+exit 0

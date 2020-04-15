@@ -1,0 +1,60 @@
+# Doc: https://git-scm.com/docs/git-config
+[user]
+    name = znppunfuv
+    email = znppunfuv@protonmail.com
+    signingkey = 644E546DC2BB4FF2E52DF3D3C4F668A99784BD07
+
+[core]
+    # Repo: https://github.com/neovim/neovim
+    editor = nvim
+    quotepath = false
+    # Repo: https://github.com/dandavison/delta
+    pager = delta --dark --theme='Solarized (dark)'
+
+[init]
+    templatedir = ~/.config/git/templates
+
+[fetch]
+    prune = true
+
+[diff]
+    tool = nvimdiff
+
+[difftool "nvimdiff"]
+    cmd = "nvim -R -d -c \"wincmd l\" -d \"${LOCAL}\" \"${REMOTE}\""
+
+[mergetool "nvimdiff"]
+    cmd = "nvim -d -c \"4wincmd w | wincmd J\" \"${LOCAL}\" \"${BASE}\" \"${REMOTE}\"  \"${MERGED}\""
+
+[commit]
+    gpgsign = true
+    template = ~/.config/git/templates/gitmessage.txt
+
+[credential]
+    helper = cache
+
+[gpg]
+    program = gpg
+
+[tag]
+    forceSignAnnotated = true
+
+[alias]
+    c = commit -av
+    cleanup = !git branch --merged | grep  -v '\\*\\|master\\|develop\\|dev|\\|feature\\|hotfixes\\|release' | xargs -n 1 git branch -d
+    su = submodule update --init --recursive
+    undo = reset --soft @^1 --
+    undo-hard = reset --hard @^1 --
+    unstage = reset HEAD --
+    push-f = push --force-with-lease
+
+# Repo: https://github.com/git-lfs/git-lfs
+[filter "lfs"]
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+
+[hooks]
+    # Repo: https://github.com/zricethezav/gitleaks
+    gitleaks = true
