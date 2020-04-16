@@ -163,6 +163,7 @@ cask "visual-studio-code-insiders"
 cask "vivaldi"
 cask "wireshark"
 cask "yubico-authenticator"
+cask "zappy"
 cask "zotero"
 mas "Microsoft To Do", id: 1274495053
 mas "NextDNS", id: 1464122853
