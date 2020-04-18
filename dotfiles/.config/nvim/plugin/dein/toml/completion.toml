@@ -1,0 +1,90 @@
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+hook_add = '''
+let g:lsp_fold_enabled = 0
+let g:lsp_diagnostics_enabled = 0
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+depends = ['vim-lsp']
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+depends = ['vim-lsp']
+hook_add = '''
+let g:lsp_settings_servers_dir = g:xdg_data_home . '/nvim/plugin/vim-lsp-settings/servers'
+'''
+
+[[plugins]]
+repo = 'lighttiger2505/deoplete-vim-lsp'
+depends = ['deoplete.nvim', 'vim-lsp']
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+" Deoplete gets started automatically when Neovim/Vim starts
+let g:deoplete#enable_at_startup = 1
+" Delay the completion after input in milliseconds
+let g:deoplete#auto_complete_delay = 0
+
+" Doc: https://neovim.io/doc/user/options.html#'completeopt'
+set completeopt=menuone
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+depends = ['context_filetype.vim']
+hook_add = '''
+let s:snippet_dir = g:xdg_config_home . '/vim/snippet'
+if !isdirectory(s:snippet_dir)
+    call mkdir(s:snippet_dir, 'p')
+endif
+let g:neosnippet#snippets_directory = s:snippet_dir
+
+im   <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xm   <C-k> <Plug>(neosnippet_expand_target)
+" SuperTab like snippets behavior.
+im <expr><TAB> pumvisible() ? "\<C-n>"
+    \ : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)"
+    \ : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable()
+    \ ? "\<Plug>(neosnippet_expand_or_jump)"
+    \ : "\<TAB>"
+" Shift Tab
+im <expr><S-TAB> pumvisible() ? "\<C-p>"
+    \ : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)"
+    \ : "\<S-TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable()
+    \ ? "\<Plug>(neosnippet_expand_or_jump)"
+    \ : "\<S-TAB>"
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+depends = ['neosnippet.vim']
+
+[[plugins]]
+repo = 'thomasfaingnaert/vim-lsp-snippets'
+depends = ['vim-lsp']
+
+[[plugins]]
+repo = 'thomasfaingnaert/vim-lsp-neosnippet'
+depends = ['vim-lsp-snippets', 'neosnippet.vim']
+
+[[plugins]]
+repo = 'ujihisa/neco-look'
+depends = ['deoplete.nvim']
+
+[[plugins]]
+repo = 'wellle/tmux-complete.vim'
+depends = ['deoplete.nvim']
+hook_add = '''
+" Doc: https://github.com/wellle/tmux-complete.vim#settings
+let g:tmuxcomplete#trigger = ''
+'''
+
+[[plugins]]
+repo = 'fszymanski/deoplete-emoji'
+depends = ['deoplete.nvim']

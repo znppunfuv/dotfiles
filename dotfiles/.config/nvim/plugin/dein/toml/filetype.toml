@@ -1,0 +1,121 @@
+[[plugins]]
+repo = 'Shougo/vinarise.vim'
+on_cmd = ['Vinarise']
+hook_source = '''
+" vinarise detects binary file or large file automatically
+let g:vinarise_enable_auto_detect = 1
+'''
+
+[[plugins]]
+repo = 'Shougo/neco-vim'
+on_ft = ['vim']
+
+[[plugins]]
+repo = 'othree/yajs.vim'
+on_ft = ['javascript', 'javascriptreact']
+
+[[plugins]]
+repo = 'othree/es.next.syntax.vim'
+on_ft = ['javascript', 'javascriptreact']
+
+[[plugins]]
+repo = 'HerringtonDarkholme/yats.vim'
+on_ft = ['typescript', 'typescriptreact']
+
+[[plugins]]
+repo = 'MaxMellon/vim-jsx-pretty'
+on_ft = ['javascriptreact', 'typescriptreact']
+
+[[plugins]]
+repo = 'styled-components/vim-styled-components'
+on_ft = ['javascriptreact', 'typescriptreact']
+
+[[plugins]]
+repo = 'hail2u/vim-css3-syntax'
+on_ft = ['css', 'javascriptreact', 'typescriptreact']
+
+[[plugins]]
+repo = 'norcalli/nvim-colorizer.lua'
+on_ft = ['css', 'html', 'javascriptreact', 'typescriptreact']
+hook_source = '''
+lua require'colorizer'.setup()
+'''
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+on_ft = ['html', 'javascriptreact', 'typescriptreact']
+
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+depends = ['tabular']
+on_ft = ['markdown']
+hook_source = '''
+let g:vim_markdown_no_default_key_mappings = 1
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_math = 1
+let g:vim_markdown_strikethrough = 1
+'''
+
+[[plugins]]
+repo = 'godlygeek/tabular'
+on_source = ['vim-markdown']
+
+[[plugins]]
+repo = 'mattn/vim-maketable'
+on_ft = ['markdown']
+
+[[plugins]]
+repo = 'tmux-plugins/vim-tmux'
+on_ft = ['tmux']
+
+[[plugins]]
+repo = 'yasuhiroki/github-actions-yaml.vim'
+on_ft = ['yml']
+hook_add = '''
+aug GitHubActions
+    au!
+    au BufRead,BufNewFile .github/workflows/*.yml set filetype=yml.gha
+aug END
+'''
+
+[[plugins]]
+repo = 'pearofducks/ansible-vim'
+on_ft = ['yml']
+hook_add = '''
+aug Ansible
+    au!
+    au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
+aug END
+'''
+hook_source = '''
+let g:ansible_extra_keywords_highlight = 1
+'''
+
+[[plugins]]
+repo = 'hashivim/vim-terraform'
+on_ft = 'terraform'
+
+[[plugins]]
+repo = 'elzr/vim-json'
+on_ft = ['json']
+hook_source = '''
+" disable conceal
+let g:vim_json_syntax_conceal = 0
+'''
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = ['toml']
+
+[[plugins]]
+repo = 'chrisbra/csv.vim'
+on_ft = ['csv']
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+on_ft = ['markdown', 'toml']
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
+on_source = ['context_filetype.vim']

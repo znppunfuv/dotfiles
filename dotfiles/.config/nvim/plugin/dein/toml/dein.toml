@@ -1,0 +1,158 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'farmergreg/vim-lastplace'
+hook_add = '''
+let g:lastplace_ignore = 'gitcommit,gitrebase,svn,hgcommit'
+let g:lastplace_ignore_buftype = 'quickfix,nofile,help'
+'''
+
+### Completion ###
+[[plugins]]
+repo = 'jiangmiao/auto-pairs'
+hook_add = '''
+aug AutoPairs
+    au!
+    au Filetype html let b:AutoPairs = AutoPairsDefine({ '<': '>' })
+    au FileType php  let b:AutoPairs = AutoPairsDefine({'<?' : '?>', '<?php': '?>'})
+    au FileType rust let b:AutoPairs = AutoPairsDefine({ '\w\zs<': '>' })
+aug END
+'''
+
+### Format ###
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+hook_add = '''
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+'''
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+hook_add = '''
+" Start interactive EasyAlign in visual mode
+xm ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object
+nm ga <Plug>(EasyAlign)
+'''
+
+### Look and Feel ###
+[[plugins]]
+repo = 'lifepillar/vim-solarized8'
+hook_add = '''
+set background=dark
+let g:solarized_termtrans = 1
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-cursorword'
+
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+hook_add = '''
+" indent guides enabled by default
+let g:indent_guides_enable_on_vim_startup = 1
+" skinny indent guides
+let g:indent_guides_guide_size = 1
+" specify a list of filetypes to disable
+let g:indent_guides_exclude_filetypes = [
+    \ 'help',
+    \ 'vista',
+    \ 'vista_kind',
+    \ 'vista_markdown',
+    \ 'clap_grep',
+    \ 'clap_input',
+    \ 'clap_spinner',
+    \ 'defx',
+\ ]
+'''
+
+[[plugins]]
+repo = 'rickhowe/diffchar.vim'
+hook_add = '''
+" 16 colors in fixed order
+let g:DiffColors = 3
+'''
+
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+
+[[plugins]]
+repo = 'mhinz/vim-signify'
+hook_add = '''
+set signcolumn=yes
+set updatetime=100
+'''
+
+### Normal mode util ###
+[[plugins]]
+repo = 'andymass/vim-matchup'
+
+[[plugins]]
+repo = 'simeji/winresizer'
+hook_add = '''
+let g:winresizer_vert_resize = 1
+let g:winresizer_horiz_resize = 1
+'''
+
+[[plugins]]
+repo = 'scrooloose/nerdcommenter'
+hook_add = '''
+nmap <C-c> <Plug>NERDCommenterToggle
+vmap <C-c> <Plug>NERDCommenterToggle
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code
+" indentation
+let g:NERDDefaultAlign = 'left'
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+'''
+
+[[plugins]]
+repo = 'machakann/vim-sandwich'
+
+[[plugins]]
+repo = 'tpope/vim-speeddating'
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+hook_add = '''
+" disable netrw's gx mapping
+let g:netrw_nogx = 1
+nm gx <Plug>(openbrowser-smart-search)
+vm gx <Plug>(openbrowser-smart-search)
+let g:openbrowser_default_search = 'duckduckgo'
+'''
+
+### Visual mode util ###
+[[plugins]]
+repo = 'terryma/vim-expand-region'
+hook_add = '''
+vmap v     <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+'''
+
+### git ###
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'idanarye/vim-merginal'
+depends = ['vim-fugitive']
+
+[[plugins]]
+repo = 'rhysd/committia.vim'
+depends = ['vim-fugitive']
+hook_add = '''
+let g:committia_min_window_width = 120
+'''
+
+[[plugins]]
+repo = 'cohama/agit.vim'
+
+[[plugins]]
+depends = ['vim-fugitive']
+repo = 'tpope/vim-rhubarb'
