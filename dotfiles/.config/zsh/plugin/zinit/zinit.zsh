@@ -95,6 +95,7 @@ zinit light mollifier/anyframe
 
 zinit ice wait='0' lucid \
     atinit='export FORGIT_GI_REPO_LOCAL="${XDG_DATA_HOME}/zsh/plugin/forgit"' \
+    run-atpull atpull='forgit::ignore::update' \
     atload="
         alias grst='gcf'
         alias gst='gss'
