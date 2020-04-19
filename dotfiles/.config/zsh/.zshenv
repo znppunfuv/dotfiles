@@ -36,6 +36,8 @@ path=(
 fpath=(
     "${ZDOTDIR}/func"(N-/)
     "${ZDOTDIR}/func_comp"(N-/)
+    # asdf-vm
+    "${ASDF_DATA_DIR}/completions"(N-/)
     "${fpath[@]}"
 )
 
