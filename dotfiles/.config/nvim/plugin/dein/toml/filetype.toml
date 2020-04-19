@@ -7,10 +7,6 @@ let g:vinarise_enable_auto_detect = 1
 '''
 
 [[plugins]]
-repo = 'Shougo/neco-vim'
-on_ft = ['vim']
-
-[[plugins]]
 repo = 'othree/yajs.vim'
 on_ft = ['javascript', 'javascriptreact']
 
