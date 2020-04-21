@@ -1,0 +1,39 @@
+name: Deploy to gh-pages
+on:
+  push:
+    paths:
+      - install.sh
+      - .github/workflows/gh-pages.yml
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.1.0
+      - name: Build
+        id: build
+        run: |
+          OUT_DIR='./.github/.out'
+          mkdir -p "${OUT_DIR}"
+          OUT_FILE="${OUT_DIR}/index.html"
+          cat ./install.sh >> "${OUT_FILE}"
+          echo "::set-output name=out::${OUT_DIR}"
+        shell: bash
+      - name: Set env
+        id: env
+        run: |
+          COMMIT_MESSAGE="build: ${GITHUB_SHA}"
+          echo "::set-output name=commit_message::${COMMIT_MESSAGE}"
+        shell: bash
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3.5.7
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ steps.build.outputs.out }}
+          CNAME: dotfiles.znppunfuv.com
+          force_orphan: true
+          user_name: github-actions[bot]
+          user_email: github-actions@users.noreply.github.com
+          commit_message: ${{ steps.env.outputs.commit_message }}
