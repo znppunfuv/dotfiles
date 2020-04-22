@@ -21,12 +21,6 @@ jobs:
           cat ./install.sh >> "${OUT_FILE}"
           echo "::set-output name=out::${OUT_DIR}"
         shell: bash
-      - name: Set env
-        id: env
-        run: |
-          COMMIT_MESSAGE="build: ${GITHUB_SHA}"
-          echo "::set-output name=commit_message::${COMMIT_MESSAGE}"
-        shell: bash
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3.5.7
         with:
@@ -36,4 +30,4 @@ jobs:
           force_orphan: true
           user_name: github-actions[bot]
           user_email: github-actions@users.noreply.github.com
-          commit_message: ${{ steps.env.outputs.commit_message }}
+          commit_message: "build: ${{ github.sha }}"
