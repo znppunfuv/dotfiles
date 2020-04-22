@@ -12,6 +12,8 @@ GHQ_ROOT="${XDG_DATA_HOME}/ghq"
 REPO_ROOT="${GHQ_ROOT}/github.com/znppunfuv/dotfiles"
 DOTFILES_HOME="${REPO_ROOT}/dotfiles"
 
+command mkdir -p "${ZSH_FUNCCOMP_DIR}"
+
 ### macOS ###
 if [ "$(uname)" = 'Darwin' ]; then
     # Homebrew
