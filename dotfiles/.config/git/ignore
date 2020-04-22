@@ -47,10 +47,6 @@
 .c9revisions
 .c9
 
-### Diff ###
-*.patch
-*.diff
-
 ### Eclipse ###
 .metadata
 bin/
@@ -204,10 +200,6 @@ fabric.properties
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 
-### Patch ###
-*.orig
-*.rej
-
 ### Tags ###
 # Ignore tags created by etags, ctags, gtags (GNU global) and cscope
 TAGS
@@ -253,20 +245,6 @@ Sessionx.vim
 tags
 # Persistent undo
 [._]*.un~
-
-### VirtualEnv ###
-# Virtualenv
-# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
-.Python
-[Bb]in
-[Ii]nclude
-[Ll]ib
-[Ll]ib64
-[Ll]ocal
-[Ss]cripts
-pyvenv.cfg
-.venv
-pip-selfcheck.json
 
 ### VisualStudioCode ###
 .vscode/*
