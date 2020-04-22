@@ -22,7 +22,8 @@ zinit ice wait='1' lucid \
     atclone='dircolors -b dircolors.256dark > color.zsh' \
     atpull='%atclone' \
     pick='color.zsh' \
-    nocompile='!'
+    nocompile='!' \
+    atload='zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"'
 zinit light seebi/dircolors-solarized
 
 zinit ice wait='0' lucid \

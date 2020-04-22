@@ -20,7 +20,7 @@ optimize_history_precmd() {
     unset OPTIMIZE_HISTORY_CALLED
 }
 
-### alias ###
+### Alias ###
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
@@ -64,7 +64,6 @@ zstyle ':completion:*' list-separator '-->'
 zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion::complete:*' use-cache true
 zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME}/zsh/zcompcache"
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 ### cdr ###
 # Doc: http://zsh.sourceforge.net/Doc/Release/User-Contributions.html#Recent-Directories
@@ -95,10 +94,10 @@ bindkey -M viins '^Y' yank
 function zle-keymap-select zle-line-init zle-line-finish {
     case "${KEYMAP}" in
         main|viins)
-            printf '\033[6 q' # line cursor
+            printf '\033[6 q' # Line cursor
             ;;
         vicmd)
-            printf '\033[2 q' # block cursor
+            printf '\033[2 q' # Block cursor
             ;;
     esac
 }
