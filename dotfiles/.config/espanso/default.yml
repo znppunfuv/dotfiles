@@ -14,7 +14,7 @@ matches:
     replace: 'znppunfuv@protonmail.com'
   - trigger: ',gmail'
     replace: 'znppunfuv@gmail.com'
-  - domain: ',domain'
+  - trigger: ',domain'
     replace: 'znppunfuv.com'
 
   # Dates
