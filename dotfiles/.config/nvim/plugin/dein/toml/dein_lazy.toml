@@ -1,8 +1,4 @@
 [[plugins]]
-repo = 'haya14busa/dein-command.vim'
-on_cmd = ['Dein']
-
-[[plugins]]
 repo = 'tpope/vim-eunuch'
 on_cmd = [
     'Delete',
@@ -29,9 +25,7 @@ if !isdirectory(s:sonictemplate_default_template_dir)
 endif
 '''
 hook_source = '''
-let g:sonictemplate_vim_template_dir = [
-    \ '$XDG_CONFIG_HOME/vim/template',
-\ ]
+let g:sonictemplate_vim_template_dir = ['$XDG_CONFIG_HOME/vim/template']
 '''
 
 ### Test ###
@@ -46,7 +40,6 @@ on_cmd = [
     'TestVisit',
 ]
 hook_source = '''
-" make test commands execute using dispatch.vim
 let g:test#strategy = 'dispatch'
 '''
 
@@ -62,14 +55,11 @@ hook_add = '''
 nn <silent><Leader>v :Vista!! <CR>
 '''
 hook_source = '''
-" close vim if the only window left open is a Vista
+let g:vista_echo_cursor_strategy = 'floating_win'
 aug VistaAutoClose
     au!
     au BufEnter * if (winnr("$") == 1 && exists('t:vista')) | q | endif
 aug END
-
-let g:vista_echo_cursor = 0
-let g:vista_echo_cursor_strategy = 'floating_win'
 '''
 
 [[plugins]]
@@ -78,96 +68,12 @@ build = 'bash install.sh'
 depends = ['vista.vim']
 on_cmd = ['Clap']
 hook_add = '''
-nn <silent><Leader>b :Clap buffers <CR>
-nn <silent><Leader>h :Clap history <CR>
-nn <silent><Leader>f :Clap files   <CR>
+nn <silent><Leader>b :Clap buffers   <CR>
+nn <silent><Leader>h :Clap history   <CR>
+nn <silent><Leader>f :Clap files     <CR>
 nn <silent><Leader>s :Clap filetypes <CR>
-nn <silent><Leader>g :Clap grep    <CR>
-nn <silent><Leader>m :Clap marks   <CR>
-nn <silent><Leader>t :Clap tags    <CR>
-nn <silent><Leader>y :Clap yanks   <CR>
+nn <silent><Leader>g :Clap grep      <CR>
+nn <silent><Leader>m :Clap marks     <CR>
+nn <silent><Leader>t :Clap tags      <CR>
+nn <silent><Leader>y :Clap yanks     <CR>
 '''
-
-### File Explorer ###
-[[plugins]]
-repo = 'Shougo/defx.nvim'
-on_cmd = ['Defx']
-hook_add = '''
-nn <silent><Leader>d :Defx <CR>
-'''
-hook_source = '''
-" close vim if the only window left open is a Defx
-aug DefxAucoClose
-    au!
-    au BufEnter * if (winnr("$") == 1 && exists('b:defx')) | q | endif
-aug END
-
-function! Root(path) abort
-    return fnamemodify(a:path, ':t')
-endfunction
-
-call defx#custom#source('file', { 'root': 'Root' })
-call defx#custom#option(
-    \ '_', {
-        \ 'auto_cd': 1,
-        \ 'buffer_name': 'defx.nvim',
-        \ 'columns': 'indent:git:icons:filename',
-        \ 'direction': 'topleft',
-        \ 'resume': 1,
-        \ 'show_ignored_files': 1,
-        \ 'split': 'vertical',
-        \ 'toggle': 1,
-        \ 'winwidth': 30,
-    \ }
-\ )
-call defx#custom#column(
-    \ 'mark', {
-        \ 'readonly_icon': '',
-        \ 'selected_icon': '✓',
-    \ }
-\ )
-
-aug Defx
-    au!
-    au FileType defx call s:defx_keybind()
-aug END
-
-function! s:defx_keybind() abort
-    nn <silent><buffer><expr> <CR>    defx#do_action('open_or_close_tree')
-    nn <silent><buffer><expr> h       defx#do_action('cd', ['..'])
-    nn <silent><buffer><expr> j       line('.') == line('$') ? 'gg' : 'j'
-    nn <silent><buffer><expr> k       line('.') == 1 ? 'G' : 'k'
-    nn <silent><buffer><expr> l       defx#do_action('open')
-    nn <silent><buffer><expr> E       defx#do_action('open', 'vsplit')
-    nn <silent><buffer><expr> P       defx#do_action('open', 'pedit')
-    nn <silent><buffer><expr> ~       defx#do_action('cd')
-    nn <silent><buffer><expr> c       defx#do_action('copy')
-    nn <silent><buffer><expr> p       defx#do_action('paste')
-    nn <silent><buffer><expr> m       defx#do_action('move')
-    nn <silent><buffer><expr> d       defx#do_action('remove')
-    nn <silent><buffer><expr> r       defx#do_action('rename')
-    nn <silent><buffer><expr> K       defx#do_action('new_directory')
-    nn <silent><buffer><expr> N       defx#do_action('new_file')
-    nn <silent><buffer><expr> M       defx#do_action('new_multiple_files')
-    nn <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
-    nn <silent><buffer><expr> *       defx#do_action('toggle_select_all')
-    nn <silent><buffer><expr> S       defx#do_action('toggle_sort', 'time')
-    nn <silent><buffer><expr> .       defx#do_action('toggle_ignored_files')
-    nn <silent><buffer><expr> !       defx#do_action('execute_command')
-    nn <silent><buffer><expr> x       defx#do_action('execute_system')
-    nn <silent><buffer><expr> yy      defx#do_action('yank_path')
-    nn <silent><buffer><expr> ;       defx#do_action('repeat')
-    nn <silent><buffer><expr> q       defx#do_action('quit')
-    nn <silent><buffer><expr> <C-l>   defx#do_action('redraw')
-endfunction
-'''
-
-[[plugins]]
-repo = 'kristijanhusak/defx-icons'
-depends = ['defx.nvim']
-on_source = ['defx.nvim']
-
-[[plugins]]
-repo = 'kristijanhusak/defx-git'
-depends = ['defx.nvim']
-on_source = ['defx.nvim']

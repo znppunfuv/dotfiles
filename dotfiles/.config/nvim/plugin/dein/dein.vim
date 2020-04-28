@@ -16,13 +16,11 @@ execute 'set rtp+=' . s:dein_repo_dir
 if dein#load_state(s:dein_data_dir)
     call dein#begin(s:dein_data_dir)
     let s:toml_dir = s:dein_config_dir . '/toml'
-    call dein#load_toml(s:toml_dir . '/dein.toml',        { 'lazy': 0 })
-    call dein#load_toml(s:toml_dir . '/completion.toml',  { 'lazy': 0 })
-    call dein#load_toml(s:toml_dir . '/search.toml',      { 'lazy': 0 })
-    call dein#load_toml(s:toml_dir . '/statusline.toml',  { 'lazy': 0 })
-    call dein#load_toml(s:toml_dir . '/codingstyle.toml', { 'lazy': 0 })
-    call dein#load_toml(s:toml_dir . '/dein_lazy.toml',   { 'lazy': 1 })
-    call dein#load_toml(s:toml_dir . '/filetype.toml',    { 'lazy': 1 })
+    call dein#load_toml(s:toml_dir . '/dein.toml',         { 'lazy': 0 })
+    call dein#load_toml(s:toml_dir . '/intellisense.toml', { 'lazy': 0 })
+    call dein#load_toml(s:toml_dir . '/statusline.toml',   { 'lazy': 0 })
+    call dein#load_toml(s:toml_dir . '/dein_lazy.toml',    { 'lazy': 1 })
+    call dein#load_toml(s:toml_dir . '/filetype.toml',     { 'lazy': 1 })
     call dein#end()
     call dein#save_state()
 endif

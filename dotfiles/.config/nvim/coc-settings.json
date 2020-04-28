@@ -1,0 +1,49 @@
+{
+  "suggest.timeout": 500,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.icon.enableVimDevicons": true,
+  "explorer.file.showHiddenFiles": true,
+  "git.addGBlameToBufferVar": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "sh",
+    "rust",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "css",
+    "python"
+  ],
+  "cSpell.enabledLanguageIds": [
+    "asciidoc",
+    "git-commit",
+    "gina-commit",
+    "latex",
+    "markdown",
+    "plaintext",
+    "text"
+  ],
+  "javascript.preferences.quoteStyle": "auto",
+  "javascript.format.enabled": false,
+  "typescript.preferences.quoteStyle": "auto",
+  "typescript.format.enabled": false,
+  "eslint.autoFixOnSave": true,
+  "css.validate": false,
+  "less.validate": false,
+  "wxss.validate": false,
+  "scss.validate": false,
+  "stylelintplus.autoFixOnFormat": true,
+  "stylelintplus.autoFixOnSave": true,
+  "stylelintplus.validateOnSave": true,
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "sh": "shfmt"
+  },
+  "diagnostic-languageserver.formatters": {
+    "shfmt": {
+      "command": "shfmt"
+    }
+  }
+}

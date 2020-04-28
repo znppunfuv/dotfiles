@@ -1,0 +1,69 @@
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+merged = 0
+rev = 'release'
+hook_add = '''
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1] =~ '\s'
+endfunction
+ino <silent><expr> <Tab> pumvisible() ? "\<C-n>"
+    \ : <SID>check_back_space() ? "\<Tab>"
+    \ : coc#refresh()
+ino <expr> <Tab> pumvisible()   ? "\<C-n>" : "\<Tab>"
+ino <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+ino <expr> <cr> pumvisible()    ? "\<C-y>" : "\<C-g>u\<CR>"
+ino <silent><expr> <cr> pumvisible()
+    \ ? coc#_select_confirm()
+    \ : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+nm <silent> <C-j> <Plug>(coc-diagnostic-prev)
+nm <silent> <C-k> <Plug>(coc-diagnostic-next)
+nm <Leader>rn <Plug>(coc-rename)
+aug CocCompleteDone
+  au!
+  au CompleteDone * if pumvisible() == 0 | pclose | endif
+aug END
+
+let g:coc_global_extensions = [
+    \ 'coc-actions',
+    \ 'coc-explorer',
+    \ 'coc-git',
+    \ 'coc-pairs',
+    \ 'coc-spell-checker',
+    \ 'coc-emoji',
+    \ 'coc-snippets',
+    \ 'coc-markdownlint',
+    \ 'coc-json',
+    \ 'coc-diagnostic',
+    \ 'coc-sh',
+    \ 'coc-vimlsp',
+    \ 'coc-rust-analyzer',
+    \ 'coc-import-cost',
+    \ 'coc-eslint',
+    \ 'coc-tsserver',
+    \ 'coc-stylelintplus',
+    \ 'coc-python',
+    \ 'coc-css',
+    \ 'coc-sql',
+\ ]
+
+" coc-actions
+function! s:cocActionsOpenFromSelected(type) abort
+    execute 'CocCommand actions.open ' . a:type
+endfunction
+xm <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode() <CR>
+nm <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected  <CR>g@
+
+" coc-explorer
+nm <Leader>e :CocCommand explorer <CR>
+aug CocExplorerAutoClose
+    au!
+    au BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+aug END
+'''
+
+[[plugins]]
+repo = 'wellle/tmux-complete.vim'

@@ -2,37 +2,27 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
+repo = 'haya14busa/dein-command.vim'
+depends = ['dein.vim']
+
+[[plugins]]
 repo = 'farmergreg/vim-lastplace'
 hook_add = '''
 let g:lastplace_ignore = 'gitcommit,gitrebase,svn,hgcommit'
 let g:lastplace_ignore_buftype = 'quickfix,nofile,help'
 '''
 
-### Completion ###
-[[plugins]]
-repo = 'jiangmiao/auto-pairs'
-hook_add = '''
-aug AutoPairs
-    au!
-    au Filetype html let b:AutoPairs = AutoPairsDefine({ '<': '>' })
-    au FileType php  let b:AutoPairs = AutoPairsDefine({'<?' : '?>', '<?php': '?>'})
-    au FileType rust let b:AutoPairs = AutoPairsDefine({ '\w\zs<': '>' })
-aug END
-'''
-
 ### Format ###
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 hook_add = '''
-let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+let g:EditorConfig_exclude_patterns = ['gina://.*', 'scp://.*']
 '''
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
 hook_add = '''
-" Start interactive EasyAlign in visual mode
 xm ga <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object
 nm ga <Plug>(EasyAlign)
 '''
 
@@ -50,11 +40,8 @@ repo = 'itchyny/vim-cursorword'
 [[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
 hook_add = '''
-" indent guides enabled by default
 let g:indent_guides_enable_on_vim_startup = 1
-" skinny indent guides
 let g:indent_guides_guide_size = 1
-" specify a list of filetypes to disable
 let g:indent_guides_exclude_filetypes = [
     \ 'help',
     \ 'vista',
@@ -63,7 +50,7 @@ let g:indent_guides_exclude_filetypes = [
     \ 'clap_grep',
     \ 'clap_input',
     \ 'clap_spinner',
-    \ 'defx',
+    \ 'coc-explorer',
 \ ]
 '''
 
@@ -77,16 +64,25 @@ let g:DiffColors = 3
 [[plugins]]
 repo = 'ryanoasis/vim-devicons'
 
-[[plugins]]
-repo = 'mhinz/vim-signify'
-hook_add = '''
-set signcolumn=yes
-set updatetime=100
-'''
-
 ### Normal mode util ###
 [[plugins]]
 repo = 'andymass/vim-matchup'
+
+[[plugins]]
+repo = 'machakann/vim-sandwich'
+
+[[plugins]]
+repo = 'scrooloose/nerdcommenter'
+hook_add = '''
+nmap <C-c> <Plug>NERDCommenterToggle
+vmap <C-c> <Plug>NERDCommenterToggle
+let g:NERDDefaultAlign = 'left'
+let g:NERDTrimTrailingWhitespace = 1
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+'''
 
 [[plugins]]
 repo = 'simeji/winresizer'
@@ -94,28 +90,6 @@ hook_add = '''
 let g:winresizer_vert_resize = 1
 let g:winresizer_horiz_resize = 1
 '''
-
-[[plugins]]
-repo = 'scrooloose/nerdcommenter'
-hook_add = '''
-nmap <C-c> <Plug>NERDCommenterToggle
-vmap <C-c> <Plug>NERDCommenterToggle
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-" Align line-wise comment delimiters flush left instead of following code
-" indentation
-let g:NERDDefaultAlign = 'left'
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-'''
-
-[[plugins]]
-repo = 'machakann/vim-sandwich'
-
-[[plugins]]
-repo = 'tpope/vim-speeddating'
 
 [[plugins]]
 repo = 'tyru/open-browser.vim'
@@ -137,22 +111,54 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 ### git ###
 [[plugins]]
-repo = 'tpope/vim-fugitive'
-
-[[plugins]]
-repo = 'idanarye/vim-merginal'
-depends = ['vim-fugitive']
+repo = 'lambdalisue/gina.vim'
 
 [[plugins]]
 repo = 'rhysd/committia.vim'
-depends = ['vim-fugitive']
 hook_add = '''
 let g:committia_min_window_width = 120
 '''
 
+### Search ###
 [[plugins]]
-repo = 'cohama/agit.vim'
+repo = 'easymotion/vim-easymotion'
+depends = ['incsearch.vim', 'incsearch-fuzzy.vim', 'incsearch-easymotion.vim']
+hook_add = '''
+" Move to word
+map <Leader>w <Plug>(easymotion-bd-w)
+nm  <Leader>w <Plug>(easymotion-overwin-w)
+" n-character search motion
+map / <Plug>(easymotion-sn)
+om  / <Plug>(easymotion-tn)
+" Jump to next/previous match (even on next/previous page)
+map n <Plug>(easymotion-next)
+map N <Plug>(easymotion-prev)
+" fuzzy-search
+function! s:config_easyfuzzymotion(...) abort
+    return extend(copy({
+        \ 'converters': [incsearch#config#fuzzyword#converter()],
+        \ 'modules': [incsearch#config#easymotion#module({ 'overwin': 1 })],
+        \ 'keymap': {"\<CR>": '<Over>(easymotion)'},
+        \ 'is_expr': 0,
+        \ 'is_stay': 1
+    \ }), get(a:, 1, {}))
+endfunction
+nmap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
+
+" Keep cursor column when JK motion
+let g:EasyMotion_startofline = 0
+" EasyMotion work similarly to Vim's smartcase option for global searches
+let g:EasyMotion_smartcase = 1
+" With this option set, v will match both v and V, but V will match V only
+let g:EasyMotion_use_smartsign_us = 1
+'''
 
 [[plugins]]
-depends = ['vim-fugitive']
-repo = 'tpope/vim-rhubarb'
+repo = 'haya14busa/incsearch.vim'
+
+[[plugins]]
+repo = 'haya14busa/incsearch-fuzzy.vim'
+
+[[plugins]]
+repo = 'haya14busa/incsearch-easymotion.vim'
+depends = ['incsearch.vim', 'vim-easymotion']

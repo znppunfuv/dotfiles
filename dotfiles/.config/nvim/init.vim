@@ -18,6 +18,8 @@ let g:xdg_data_home   = !empty($XDG_DATA_HOME)
     \ : $HOME . '/.local/share'
 
 """ Options """
+set hidden
+set updatetime=100
 " Indent
 set tabstop=4
 set shiftwidth=4
@@ -36,6 +38,12 @@ set number
 set relativenumber
 set pumblend=15
 set winblend=15
+set showtabline=2
+set cmdheight=2
+set signcolumn=yes
+" Backup
+set nobackup
+set nowritebackup
 " For all operations
 set clipboard+=unnamedplus
 " All previous modes

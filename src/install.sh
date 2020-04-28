@@ -60,6 +60,9 @@ else
     rustup completions zsh >"${ZSH_FUNCCOMP_DIR}/_rustup"
     ln -snf "$(rustc --print sysroot)/share/zsh/site-functions/_cargo" \
         "${ZSH_FUNCCOMP_DIR}/_cargo"
+    # For rust-analyzer
+    # Doc: https://rust-analyzer.github.io/manual.html#installation
+    rustup component add rust-src
 fi
 
 ### Python ###

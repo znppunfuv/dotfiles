@@ -1,82 +1,60 @@
 [[plugins]]
 repo = 'itchyny/lightline.vim'
-depend = [
-    'lightline-ale',
-    'vim-gitgutter',
-    'vim-devicons'
-]
+depend = ['vim-devicons', 'coc.nvim', 'gina.vim']
 hook_add = '''
-" statusline
+" Statusline
 let g:lightline = {
     \ 'colorscheme': 'solarized',
     \ 'active': {
         \ 'left': [
             \ ['mode', 'paste'],
-            \ ['fugitive', 'filename'],
-            \ [
-                \ 'linter_checking',
-                \ 'linter_errors',
-                \ 'linter_warnings',
-                \ 'linter_ok',
-            \ ],
+            \ ['branch', 'filename'],
+            \ ['cocstatus'],
         \ ],
         \ 'right': [
             \ ['lineinfo'],
             \ ['percent'],
-            \ [
-                \ 'fileformat',
-                \ 'fileencoding',
-                \ 'filetype',
-            \ ],
+            \ ['fileformat', 'fileencoding', 'filetype'],
+            \ ['blame'],
         \ ],
     \ },
     \ 'component_function': {
         \ 'mode':         'LightlineMode',
-        \ 'fugitive':     'LightlineFugitive',
+        \ 'branch':       'LightlineBranchName',
         \ 'filename':     'LightlineFilename',
         \ 'lineinfo':     'LightLineLineInfo',
         \ 'percent':      'LightLinePercent',
         \ 'fileformat':   'LightlineFileformat',
         \ 'fileencoding': 'LightlineFileencoding',
         \ 'filetype':     'LightlineFiletype',
-    \ },
-    \ 'component_expand': {
-        \ 'linter_checking': 'lightline#ale#checking',
-        \ 'linter_warnings': 'lightline#ale#warnings',
-        \ 'linter_errors':   'lightline#ale#errors',
-        \ 'linter_ok':       'lightline#ale#ok',
-    \ },
-    \ 'component_type': {
-        \ 'linter_checking': 'left',
-        \ 'linter_warnings': 'warning',
-        \ 'linter_errors':   'error',
-        \ 'linter_ok':       'left',
+        \ 'cocstatus':    'coc#status',
+        \ 'blame':        'LightlineGitBlame',
     \ },
     \ 'separator': { 'left' : '', 'right': '' },
     \ 'subseparator': { 'left' : '', 'right': '' },
 \ }
 
-" mode
+" Mode
 function! LightlineMode()
     let l:fname = expand('%:t')
     return l:fname
-        \ =~ '__vista__'            ? 'Vista.vim'
-        \ :  l:fname =~ 'defx.nvim' ? 'defx.nvim'
-        \ :  winwidth(0) > 60       ? lightline#mode()
+        \ =~ '__vista__'               ? 'Vista.vim'
+        \ :  l:fname =~ 'coc-explorer' ? 'coc-explorer'
+        \ :  winwidth(0) > 60          ? lightline#mode()
         \ :  ''
 endfunction
 
-" fugitive
-function! LightlineFugitive()
-    if expand('%:t') !~ '\(__vista__\|defx.nvim\)' && exists('*fugitive#head')
+" Branch name
+function! LightlineBranchName()
+    if expand('%:t') !~ '\(__vista__\|coc-explorer\)'
         let l:mark   = ' '
-        let l:branch = fugitive#head()
+        let l:branch = gina#component#repo#branch()
         return l:branch !=# '' ? l:mark . l:branch : ''
     endif
     return ''
 endfunction
 
-" filename
+" Filename
 function! LightlineReadonly()
     return &ft !~? 'help' && &readonly ? '' : ''
 endfunction
@@ -90,61 +68,42 @@ endfunction
 function! LightlineFilename()
     let l:fname = expand('%:t')
     return l:fname
-        \ =~ '\(__vista__\|defx.nvim\)' ? ''
+        \ =~ '\(__vista__\|coc-explorer\)' ? ''
         \ : ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '')
             \ . ('' != l:fname ? l:fname : '[No Name]')
             \ . ('' != LightlineModified() ? ' ' . LightlineModified() : '')
 endfunction
 
-" line info
+" Line info
 function! LightLineLineInfo()
-    return expand('%:t')
-        \ =~ '\(__vista__\|defx.nvim\)' ? ''
-        \ :  ' ' . line('.') . ':' . col('.')
+    return expand('%:t') =~ '\(__vista__\|coc-explorer\)' ? '' :  ' ' . line('.') . ':' . col('.')
 endfunction
 
-" line percent
+" Line percent
 function! LightLinePercent()
-    return expand('%:t')
-        \ =~ '\(__vista__\|defx.nvim\)' ? ''
-        \ :  line('.') * 100 / line('$') . '%'
+    return expand('%:t') =~ '\(__vista__\|coc-explorer\)' ? '' :  line('.') * 100 / line('$') . '%'
 endfunction
 
-" file format
+" File format
 function! LightlineFileformat()
-    return winwidth(0) > 70
-        \ ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol())
-        \ : ''
+    return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
 endfunction
 
-" file encoding
+" File encoding
 function! LightlineFileencoding()
     return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
 endfunction
 
-" file type
+" File type
 function! LightlineFiletype()
     return winwidth(0) > 70
-        \ ? (
-            \ strlen(&filetype)
-                \ ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol()
-                \ : 'no ft'
-            \ )
-        \ : ''
+      \ ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft')
+      \ : ''
 endfunction
 
-" tabline
-" Doc: https://neovim.io/doc/user/options.html#'tabline'
-set showtabline=2
-'''
-
-[[plugins]]
-repo = 'maximbaz/lightline-ale'
-depends = ['ale', 'lightline.vim']
-hook_add = '''
-" indicator
-let g:lightline#ale#indicator_checking = ' '
-let g:lightline#ale#indicator_warnings = ' '
-let g:lightline#ale#indicator_errors   = ' '
-let g:lightline#ale#indicator_ok       = ' '
+" coc-vim
+function! LightlineGitBlame() abort
+  let blame = get(b:, 'coc_git_blame', '')
+  return winwidth(0) > 120 ? blame : ''
+endfunction
 '''
