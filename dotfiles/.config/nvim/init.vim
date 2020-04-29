@@ -80,7 +80,7 @@ aug END
 aug Quickfix
     au!
     au WinEnter *
-        \ if winnr('$') == 1 && getbufvar(winbufnr(winnr()), '&buftype') == 'quickfix | q | endif
+        \ if winnr('$') == 1 && getbufvar(winbufnr(winnr()), '&buftype') == 'quickfix' | q | endif
 aug END
 
 """ Plugin """
