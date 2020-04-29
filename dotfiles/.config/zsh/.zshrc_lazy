@@ -11,7 +11,6 @@ fi
 
 # Repo: https://github.com/tmux/tmux
 if (( ${+commands[tmux]} )); then
-    alias tmux="tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf"
     alias t='tmux attach || tmux new'
     # Repo: https://github.com/tmux-plugins/tpm
     alias tpm-update-plugins="${XDG_DATA_HOME}/tmux/plugin/tpm/bin/update_plugins all"
