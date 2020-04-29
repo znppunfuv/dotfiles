@@ -37,8 +37,7 @@ let g:lightline = {
 " Mode
 function! LightlineMode()
     let l:fname = expand('%:t')
-    return l:fname
-        \ =~ '__vista__'               ? 'Vista.vim'
+    return l:fname =~ '__vista__'      ? 'Vista.vim'
         \ :  l:fname =~ 'coc-explorer' ? 'coc-explorer'
         \ :  winwidth(0) > 60          ? lightline#mode()
         \ :  ''
@@ -59,16 +58,14 @@ function! LightlineReadonly()
     return &ft !~? 'help' && &readonly ? '' : ''
 endfunction
 function! LightlineModified()
-    return &ft
-        \ =~ 'help'      ? ''
+    return &ft =~ 'help' ? ''
         \ :  &modified   ? '+'
         \ :  &modifiable ? ''
         \ :  '-'
 endfunction
 function! LightlineFilename()
     let l:fname = expand('%:t')
-    return l:fname
-        \ =~ '\(__vista__\|coc-explorer\)' ? ''
+    return l:fname =~ '\(__vista__\|coc-explorer\)' ? ''
         \ : ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '')
             \ . ('' != l:fname ? l:fname : '[No Name]')
             \ . ('' != LightlineModified() ? ' ' . LightlineModified() : '')
@@ -97,8 +94,7 @@ endfunction
 " File type
 function! LightlineFiletype()
     return winwidth(0) > 70
-      \ ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft')
-      \ : ''
+      \ ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
 endfunction
 
 " coc-vim

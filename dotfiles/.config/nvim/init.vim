@@ -7,15 +7,9 @@ let g:loaded_node_provider   = 1
 
 """ XDG Base Directory """
 " Doc: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
-let g:xdg_config_home = !empty($XDG_CONFIG_HOME)
-    \ ? $XDG_CONFIG_HOME
-    \ : $HOME . '/.config'
-let g:xdg_cache_home  = !empty($XDG_CACHE_HOME)
-    \ ? $XDG_CACHE_HOME
-    \ : $HOME . '/.cache'
-let g:xdg_data_home   = !empty($XDG_DATA_HOME)
-    \ ? $XDG_DATA_HOME
-    \ : $HOME . '/.local/share'
+let g:xdg_config_home = !empty($XDG_CONFIG_HOME) ? $XDG_CONFIG_HOME : $HOME . '/.config'
+let g:xdg_cache_home  = !empty($XDG_CACHE_HOME)  ? $XDG_CACHE_HOME  : $HOME . '/.cache'
+let g:xdg_data_home   = !empty($XDG_DATA_HOME)   ? $XDG_DATA_HOME   : $HOME . '/.local/share'
 
 """ Options """
 set hidden
@@ -86,9 +80,7 @@ aug END
 aug Quickfix
     au!
     au WinEnter *
-        \ if winnr('$') == 1 && getbufvar(winbufnr(winnr()), '&buftype') == 'quickfix'
-            \ | q
-        \ | endif
+        \ if winnr('$') == 1 && getbufvar(winbufnr(winnr()), '&buftype') == 'quickfix | q | endif
 aug END
 
 """ Plugin """
