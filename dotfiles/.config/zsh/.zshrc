@@ -11,11 +11,9 @@ optimize_history_preexec() {
 optimize_history_precmd() {
     local -r exit_code="$?"
     # Exit Code 130: Script terminated by Ctrl-C
-    if [[ ! ${exit_code} =~ ^(0|130)$ ]] && \
-        [[ "${OPTIMIZE_HISTORY_CALLED}" -eq 1 ]]; then
+    if [[ ! ${exit_code} =~ ^(0|130)$ ]] && [[ "${OPTIMIZE_HISTORY_CALLED}" -eq 1 ]]; then
         # BSD || GNU
-        command sed -i '' '$d' "${HISTFILE}" 2>/dev/null || \
-            command sed -i '$d' "${HISTFILE}"
+        command sed -i '' '$d' "${HISTFILE}" 2>/dev/null || command sed -i '$d' "${HISTFILE}"
     fi
     unset OPTIMIZE_HISTORY_CALLED
 }

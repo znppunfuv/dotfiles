@@ -64,9 +64,7 @@ if (( ${+commands[fzf]} )); then
         local -r branches="$(command git --no-pager branch --all | command grep -v 'HEAD')"
         local -r branch="$(echo "${branches}" | command fzf-tmux +m)" &&
             command git checkout "$(
-                echo "${branch}" | \
-                    command sed 's/.* //' | \
-                    command sed 's#remotes/[^/]*/##'
+                echo "${branch}" | command sed 's/.* //' | command sed 's#remotes/[^/]*/##'
             )"
     }
     # git checkout tag
@@ -74,8 +72,7 @@ if (( ${+commands[fzf]} )); then
         local -r tag="$(
             command git --no-pager tag | \
                 command fzf-tmux +m --ansi --preview='command git show --color=always {}'
-            )" &&
-            command git checkout "${tag}"
+            )" && command git checkout "${tag}"
     }
 fi
 
