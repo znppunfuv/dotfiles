@@ -33,11 +33,6 @@ if (( ${+commands[gpg]} )); then
     gpg-connect-agent updatestartuptty /bye >/dev/null
 fi
 
-# Repo: https://github.com/bootandy/dust
-if (( ${+commands[dust]} )); then
-    alias du='dust'
-fi
-
 # Repo: https://github.com/ogham/exa
 if (( ${+commands[exa]} )); then
     alias ls='exa --group-directories-first --icons --classify'
@@ -54,11 +49,6 @@ fi
 # Repo: https://github.com/github/hub
 if (( ${+commands[hub]} )); then
     . <(hub alias -s)
-fi
-
-# Repo: https://github.com/jesseduffield/lazygit
-if (( ${+commands[lazygit]} )); then
-    alias lg='lazygit'
 fi
 
 # Repo: https://github.com/motemen/ghq

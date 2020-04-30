@@ -48,13 +48,6 @@
     unstage = reset HEAD --
     push-f = push --force-with-lease
 
-# Repo: https://github.com/git-lfs/git-lfs
-[filter "lfs"]
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
-    required = true
-    clean = git-lfs clean -- %f
-
 [hooks]
     # Repo: https://github.com/zricethezav/gitleaks
     gitleaks = true
