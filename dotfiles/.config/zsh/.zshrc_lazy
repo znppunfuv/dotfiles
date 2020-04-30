@@ -46,11 +46,6 @@ if (( ${+commands[ytop]} )); then
     alias top='ytop -c solarized-dark'
 fi
 
-# Repo: https://github.com/github/hub
-if (( ${+commands[hub]} )); then
-    . <(hub alias -s)
-fi
-
 # Repo: https://github.com/motemen/ghq
 export GHQ_ROOT="${XDG_DATA_HOME}/ghq"
 
