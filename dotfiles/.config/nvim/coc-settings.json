@@ -35,6 +35,8 @@
   "stylelintplus.autoFixOnFormat": true,
   "stylelintplus.autoFixOnSave": true,
   "stylelintplus.validateOnSave": true,
+  "latex.build.onSave": true,
+  "latex.lint.onChange": true,
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck"
   },

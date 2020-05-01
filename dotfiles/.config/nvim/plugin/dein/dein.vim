@@ -7,11 +7,11 @@ let g:dein#cache_directory = g:xdg_cache_home  . '/dein'
 
 " Auto install
 if !isdirectory(s:dein_data_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+    exe '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
 endif
 
 " Add the dein installation directory into runtimepath
-execute 'set rtp+=' . s:dein_repo_dir
+exe 'set rtp+=' . s:dein_repo_dir
 
 if dein#load_state(s:dein_data_dir)
     call dein#begin(s:dein_data_dir)

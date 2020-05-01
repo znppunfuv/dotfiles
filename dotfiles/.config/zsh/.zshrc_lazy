@@ -7,6 +7,7 @@ fi
 if (( ${+commands[nvim]} )); then
     export EDITOR='nvim'
     alias e='nvim'
+    alias nvimtex='NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim'
 fi
 
 # Repo: https://github.com/tmux/tmux

@@ -37,6 +37,35 @@ lua require'colorizer'.setup()
 '''
 
 [[plugins]]
+repo = 'lervag/vimtex'
+on_ft = ['tex', 'plaintex']
+hook_source = '''
+let g:vimtex_compiler_progname = 'nvr'
+let g:vimtex_compiler_method = 'tectonic'
+let g:vimtex_compiler_tectonic = {
+    \ 'backend' : 'nvim',
+    \ 'background' : 1,
+    \ 'build_dir' : '',
+    \ 'options' : ['--keep-logs', '--synctex'],
+\ }
+let g:vimtex_complete_enabled = 0
+let g:vimtex_imaps_enabled = 0
+let g:vimtex_quickfix_enabled = 0
+if has('mac')
+    let g:vimtex_view_method = 'skim'
+    " Doc: *vimtex-faq-skimviewer*
+    exe '!defaults write -app Skim SKTeXEditorPreset -string ""'
+    exe '!defaults write -app Skim SKTeXEditorCommand -string "nvr~"'
+    exe '!defaults write -app Skim SKTeXEditorArguments -string "--remote +\"%line\" \"%file\"~"'
+  " Doc: *vimtex-faq-wsl*
+  elseif has('win32') || (has('unix') && exists('$WSLENV'))
+    let g:vimtex_view_general_viewer = 'mupdf.exe'
+  else
+    let g:vimtex_view_method = 'mupdf'
+fi
+'''
+
+[[plugins]]
 repo = 'plasticboy/vim-markdown'
 depends = ['tabular']
 on_ft = ['markdown']
