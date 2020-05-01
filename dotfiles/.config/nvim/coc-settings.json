@@ -38,7 +38,8 @@
   "latex.build.onSave": true,
   "latex.lint.onChange": true,
   "diagnostic-languageserver.filetypes": {
-    "sh": "shellcheck"
+    "sh": "shellcheck",
+    "dockerfile": "hadolint"
   },
   "diagnostic-languageserver.formatFiletypes": {
     "sh": "shfmt"
