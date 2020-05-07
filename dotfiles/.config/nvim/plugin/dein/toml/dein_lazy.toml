@@ -73,7 +73,7 @@ nn <silent><Leader>h :Clap history   <CR>
 nn <silent><Leader>f :Clap gfiles    <CR>
 nn <silent><Leader>s :Clap filetypes <CR>
 nn <silent><Leader>g :Clap grep2     <CR>
-nn <silent><Leader>t :Clap proj_tags <CR>
+nn <silent><Leader>t :Clap tags      <CR>
 nn <silent><Leader>y :Clap yanks     <CR>
 let g:clap_theme = 'solarized_dark'
 '''
