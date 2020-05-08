@@ -47,6 +47,9 @@
 .c9revisions
 .c9
 
+### direnv ###
+.envrc
+
 ### Eclipse ###
 .metadata
 bin/

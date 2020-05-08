@@ -84,13 +84,12 @@ export DOCKER_BUILDKIT=1
 ### asdf-vm ###
 # Repo: https://github.com/asdf-vm/asdf
 export ASDF_DATA_DIR="${XDG_DATA_HOME}/asdf"
-. "${ASDF_DATA_DIR}/asdf.sh"
 export ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/asdfrc"
-
-### direnv ###
-# Repo: https://github.com/direnv/direnv
-if (( ${+commands[direnv]} )); then
-    . <(direnv hook zsh)
+# Doc: https://github.com/asdf-community/asdf-direnv
+path=("${ASDF_DATA_DIR}/bin"(N-/) "${path[@]}")
+if (( ${+commands[asdf]} )); then
+    . <(asdf exec direnv hook zsh)
+    alias direnv='asdf exec direnv'
 fi
 
 ### Node.js ###
