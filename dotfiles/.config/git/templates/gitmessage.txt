@@ -10,17 +10,17 @@
 # [optional footer(s)]
 
 # type
-#   fix:      Bug fixes
-#   feat:     New features
+#   fix:      A bug fix
+#   feat:     A new features
 #   docs:     Documentation only changes
-#   style:    white-space, formatting, missing semi-colons, etc
+#   style:    Changes that do not affect the meaning of the code
 #   refactor: A code change that neither fixes a bug nor adds a feature
 #   perf:     A code change that improves performance
 #   test:     Adding missing or correcting existing tests
-#   chore:    Build process or auxiliary tool change
 #   build:    Changes that affect the build system or external dependencies
-#   ci:       CI related changes
-#   revert:   Revert some existing commits
+#   ci:       Changes to our CI configuration files and scripts
+#   chore:    Other changes that don't modify src or test files
+#   revert:   Reverts a previous commit
 
 # optional scope
 #   init:     Initialize commit
