@@ -41,7 +41,8 @@ else
     # shellcheck disable=SC1090
     . "${ASDF_DATA_DIR}/asdf.sh"
     export ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/asdfrc"
-    asdf plugin-add nodejs
+    asdf plugin add direnv
+    asdf plugin add nodejs
     /bin/bash "${ASDF_DATA_DIR}/plugins/nodejs/bin/import-release-team-keyring"
     asdf install
 fi
