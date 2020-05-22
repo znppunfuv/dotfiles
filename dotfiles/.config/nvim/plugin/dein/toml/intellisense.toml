@@ -31,7 +31,6 @@ let g:coc_global_extensions = [
     \ 'coc-actions',
     \ 'coc-explorer',
     \ 'coc-git',
-    \ 'coc-pairs',
     \ 'coc-spell-checker',
     \ 'coc-emoji',
     \ 'coc-snippets',

@@ -12,6 +12,16 @@ let g:lastplace_ignore = 'gitcommit,gitrebase,svn,hgcommit'
 let g:lastplace_ignore_buftype = 'quickfix,nofile,help'
 '''
 
+[[plugins]]
+repo = 'jiangmiao/auto-pairs'
+hook_add = '''
+aug AutoPairs
+    au!
+    au Filetype html let b:AutoPairs = AutoPairsDefine({ '<': '>' })
+    au FileType rust let b:AutoPairs = AutoPairsDefine({ '\w\zs<': '>' })
+aug END
+'''
+
 ### Format ###
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
