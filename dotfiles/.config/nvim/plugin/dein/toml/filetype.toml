@@ -22,10 +22,6 @@ repo = 'MaxMellon/vim-jsx-pretty'
 on_ft = ['javascriptreact', 'typescriptreact']
 
 [[plugins]]
-repo = 'styled-components/vim-styled-components'
-on_ft = ['javascriptreact', 'typescriptreact']
-
-[[plugins]]
 repo = 'hail2u/vim-css3-syntax'
 on_ft = ['css', 'javascriptreact', 'typescriptreact']
 
