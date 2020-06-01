@@ -61,7 +61,7 @@ vn k gk
 " Paste over without overwriting register
 xn <silent>p "_dP
 " Clear last search highlighting
-nmap <silent><Esc><Esc> :noh<CR> :call clearmatches()<CR>
+nn <Esc><Esc> :<C-u>nohls<CR>
 
 """ Indent """
 aug FileTypeIndent
