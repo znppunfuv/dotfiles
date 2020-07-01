@@ -9,7 +9,7 @@
     editor = nvim
     quotepath = false
     # Repo: https://github.com/dandavison/delta
-    pager = delta --dark --theme='Solarized (dark)'
+    pager = delta --dark
 
 [init]
     templatedir = ~/.config/git/templates
@@ -47,6 +47,10 @@
     undo-hard = reset --hard @^1 --
     unstage = reset HEAD --
     push-f = push --force-with-lease
+
+# Repo: https://github.com/dandavison/delta
+[delta]
+    syntax-theme = 'Solarized (dark)'
 
 [hooks]
     # Repo: https://github.com/zricethezav/gitleaks
