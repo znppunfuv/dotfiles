@@ -1,9 +1,8 @@
 """ Neovim provider """
 " Doc: https://neovim.io/doc/user/provider.html
-let g:loaded_python_provider = 1
-let g:python_host_prog       = ''
-let g:loaded_ruby_provider   = 1
-let g:loaded_node_provider   = 1
+let g:loaded_python_provider = 0
+let g:loaded_ruby_provider   = 0
+let g:loaded_node_provider   = 0
 
 """ XDG Base Directory """
 " Doc: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
