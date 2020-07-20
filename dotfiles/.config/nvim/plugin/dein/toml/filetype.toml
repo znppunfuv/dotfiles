@@ -18,6 +18,10 @@ repo = 'HerringtonDarkholme/yats.vim'
 on_ft = ['typescript', 'typescriptreact']
 
 [[plugins]]
+repo = 'styled-components/vim-styled-components'
+on_ft = ['javascriptreact', 'typescriptreact']
+
+[[plugins]]
 repo = 'MaxMellon/vim-jsx-pretty'
 on_ft = ['javascriptreact', 'typescriptreact']
 
