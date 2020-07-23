@@ -51,7 +51,3 @@
 # Repo: https://github.com/dandavison/delta
 [delta]
     syntax-theme = 'Solarized (dark)'
-
-[hooks]
-    # Repo: https://github.com/zricethezav/gitleaks
-    gitleaks = true
