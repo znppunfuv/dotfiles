@@ -77,6 +77,6 @@ else
         python
     # shellcheck disable=SC1090
     . "${XDG_DATA_HOME}/poetry/env"
-    poetry completions zsh >"${ZSH_FUNCCOMP_DIR}"
+    poetry completions zsh >"${ZSH_FUNCCOMP_DIR}/_poetry"
     pip install --user -r "${XDG_CONFIG_HOME}/pip/requirements.txt"
 fi
