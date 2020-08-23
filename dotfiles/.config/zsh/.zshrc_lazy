@@ -89,7 +89,9 @@ export ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/asdfrc"
 path=("${ASDF_DATA_DIR}/bin"(N-/) "${path[@]}")
 if (( ${+commands[asdf]} )); then
     . <(asdf exec direnv hook zsh)
-    alias direnv='asdf exec direnv'
+   direnv() {
+       asdf exec direnv "$@"
+   } 
 fi
 
 ### Node.js ###

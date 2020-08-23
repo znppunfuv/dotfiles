@@ -1,1 +1,1 @@
-. "$(asdf which direnv_use_asdf)"
+. "$(asdf direnv hook asdf)"
