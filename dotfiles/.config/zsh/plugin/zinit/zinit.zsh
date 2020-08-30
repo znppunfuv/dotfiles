@@ -96,7 +96,16 @@ zinit light mollifier/anyframe
 
 zinit ice wait=0 lucid \
     atinit='export FORGIT_GI_REPO_LOCAL="${XDG_DATA_HOME}/zsh/plugin/forgit"' \
-    run-atpull atpull='forgit::ignore::update' \
+    run-atpull atpull='
+        forgit::ignore::update
+        gitignore_global="${XDG_CONFIG_HOME}/git/ignore"
+        echo "${gitignore_global}"
+        forgit::ignore::get \
+            Backup GPG Linux Tags Vagrant Vim VisualStudioCode Windows Xcode macOS \
+            > "${gitignore_global}"
+        echo -e "### direnv ###\n.envrc\n" >> ${gitignore_global}
+        echo -e "### Zsh ###\n*.zwc" >> ${gitignore_global}
+    ' \
     atload="
         alias grst='gcf'
         alias gst='gss'
@@ -108,5 +117,5 @@ zinit ice wait=0 lucid \
 zinit light mollifier/cd-gitroot
 
 zinit ice wait=0 lucid \
-    atinit='. "$ZDOTDIR/.zshrc_lazy"'
+    atinit='. "${ZDOTDIR}/.zshrc_lazy"'
 zinit light zdharma/null
