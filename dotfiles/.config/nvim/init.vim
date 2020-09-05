@@ -86,4 +86,4 @@ aug END
 """ Plugin """
 " dein.vim
 " Repo: https://github.com/Shougo/dein.vim
-exec 'source' g:xdg_config_home . '/nvim/plugin/dein/dein.vim'
+exe 'source' g:xdg_config_home . '/nvim/plugin/dein/dein.vim'

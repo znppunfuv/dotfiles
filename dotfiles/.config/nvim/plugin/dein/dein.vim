@@ -18,7 +18,7 @@ exe 'set rtp+=' . s:dein_repo_dir
 if !filereadable(expand(s:dein_github_api_token_file))
     call writefile(["let g:dein#install_github_api_token = ''"], s:dein_github_api_token_file)
 endif
-exec 'source' s:dein_github_api_token_file
+exe 'source' s:dein_github_api_token_file
 
 if dein#load_state(s:dein_data_dir)
     call dein#begin(s:dein_data_dir)
