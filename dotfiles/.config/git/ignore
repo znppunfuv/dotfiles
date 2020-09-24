@@ -166,3 +166,6 @@ Temporary Items
 
 ### Zsh ###
 *.zwc
+
+### asdf ###
+.tool-versions

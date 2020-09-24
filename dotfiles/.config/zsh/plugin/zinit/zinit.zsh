@@ -105,6 +105,7 @@ zinit ice wait=0 lucid \
             > "${gitignore_global}"
         echo -e "### direnv ###\n.envrc\n" >> ${gitignore_global}
         echo -e "### Zsh ###\n*.zwc" >> ${gitignore_global}
+        echo -e "### asdf ###\n.tool-versions >> ${gitignore_global}"
     ' \
     atload="
         alias grst='gcf'
