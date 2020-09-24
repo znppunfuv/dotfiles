@@ -78,5 +78,10 @@ else
     # shellcheck disable=SC1090
     . "${XDG_DATA_HOME}/poetry/env"
     poetry completions zsh >"${ZSH_FUNCCOMP_DIR}/_poetry"
-    pip install --user -r "${XDG_CONFIG_HOME}/pip/requirements.txt"
+    poetry config virtualenvs.in-project true
 fi
+
+### Neovim ###
+echo 'Install Neovim'
+cd "${XDG_CONFIG_HOME}/nvim/python"
+poetry install

@@ -1,2 +1,1 @@
-settings.virtualenvs.create: true
 settings.virtualenvs.in-project: true

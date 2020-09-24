@@ -1,5 +1,0 @@
-greenlet
-msgpack
-neovim-remote
-psutil
-pynvim

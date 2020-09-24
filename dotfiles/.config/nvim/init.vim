@@ -1,14 +1,16 @@
-""" Neovim provider """
-" Doc: https://neovim.io/doc/user/provider.html
-let g:loaded_python_provider = 0
-let g:loaded_ruby_provider   = 0
-let g:loaded_node_provider   = 0
-
 """ XDG Base Directory """
 " Doc: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 let g:xdg_config_home = !empty($XDG_CONFIG_HOME) ? $XDG_CONFIG_HOME : $HOME . '/.config'
 let g:xdg_cache_home  = !empty($XDG_CACHE_HOME)  ? $XDG_CACHE_HOME  : $HOME . '/.cache'
 let g:xdg_data_home   = !empty($XDG_DATA_HOME)   ? $XDG_DATA_HOME   : $HOME . '/.local/share'
+
+""" Neovim provider """
+" Doc: https://neovim.io/doc/user/provider.html
+let g:python3_host_prog = g:xdg_config_home . '/nvim/python/.venv/bin/python3'
+" let g:python3_host_prog = expand('~/Downloads/hoge/.venv/bin/python3')
+let g:loaded_python_provider = 0
+let g:loaded_ruby_provider   = 0
+let g:loaded_node_provider   = 0
 
 """ Options """
 set hidden
