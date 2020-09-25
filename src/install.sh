@@ -83,5 +83,5 @@ fi
 
 ### Neovim ###
 echo 'Install Neovim'
-cd "${XDG_CONFIG_HOME}/nvim/python"
+cd "${XDG_DATA_HOME}/nvim/python"
 poetry install

@@ -1,7 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: pip
-    directory: /dotfiles/.config/nvim/python
+    directory: /dotfiles/.local/share/nvim/python
     schedule:
       interval: daily
     commit-message:
