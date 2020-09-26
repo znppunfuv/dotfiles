@@ -52,13 +52,6 @@ let g:coc_global_extensions = [
     \ 'coc-texlab',
 \ ]
 
-" coc-actions
-function! s:cocActionsOpenFromSelected(type) abort
-    execute 'CocCommand actions.open ' . a:type
-endfunction
-xm <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode() <CR>
-nm <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected  <CR>g@
-
 " coc-explorer
 nm <Leader>e :CocCommand explorer <CR>
 aug CocExplorerAutoClose
