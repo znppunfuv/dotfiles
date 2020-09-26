@@ -96,17 +96,20 @@ zinit light mollifier/anyframe
 
 zinit ice wait=0 lucid \
     atinit='export FORGIT_GI_REPO_LOCAL="${XDG_DATA_HOME}/zsh/plugin/forgit"' \
-    run-atpull atpull='
+    atclone='
+        . ./forgit.plugin.zsh
         forgit::ignore::update
-        gitignore_global="${XDG_CONFIG_HOME}/git/ignore"
-        echo "${gitignore_global}"
+        git_config_dir="${XDG_CONFIG_HOME}/git"
+        mkdir -p "${git_config_dir}"
+        gitignore_global="${git_config_dir}/ignore"
         forgit::ignore::get \
             Backup GPG Linux Tags Vagrant Vim VisualStudioCode Windows Xcode macOS \
             > "${gitignore_global}"
-        echo -e "### direnv ###\n.envrc\n" >> ${gitignore_global}
-        echo -e "### Zsh ###\n*.zwc" >> ${gitignore_global}
-        echo -e "### asdf ###\n.tool-versions >> ${gitignore_global}"
+        echo -e "### direnv ###\n.envrc\n" >> "${gitignore_global}"
+        echo -e "### Zsh ###\n*.zwc\n" >> "${gitignore_global}"
+        echo -e "### asdf ###\n.tool-versions\n" >> "${gitignore_global}"
     ' \
+    run-atpull atpull='%atclone' \
     atload="
         alias grst='gcf'
         alias gst='gss'
