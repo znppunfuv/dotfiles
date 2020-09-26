@@ -16,6 +16,27 @@ command mkdir -p "${ZSH_FUNCCOMP_DIR}"
 
 ### macOS ###
 if [ "$(uname)" = 'Darwin' ]; then
+    # defaults
+    defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+    defaults write -globalDomain "AppleInterfaceStyle" -string "Dark"
+    ## Finder
+    chflags nohidden ~/Library
+    defaults write com.apple.finder AppleShowAllFiles -bool true
+    defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+    defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+    defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+    defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+    killall Finder
+    ## Dock
+    defaults write com.apple.dock autohide -bool false
+    defaults write com.apple.dock magnification -bool false
+    defaults write com.apple.dock tilesize -int 40
+    killall Dock
+    # Menubar
+    defaults write com.apple.menuextra.battery ShowPercent -bool true
+    defaults write com.apple.menuextra.clock DateFormat -string "EEE MMM d HH:mm:ss"
+    killall SystemUIServer
+
     # Homebrew
     echo 'Install Homebrew...'
     if type brew >/dev/null 2>&1; then
