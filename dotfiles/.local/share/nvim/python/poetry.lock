@@ -55,7 +55,7 @@ pyuv = ["pyuv (>=1.0.0)"]
 test = ["pytest (>=3.4.0)"]
 
 [metadata]
-content-hash = "268f8a01c83df9eb0eab8697cf209af5cca6a4d0f72c1da0c9221c69d04f0c7b"
+content-hash = "ea620caf076129e641deb33e5aebd07fb9cdc3defbb87048df460c462ec6cacb"
 python-versions = "^3.8"
 
 [metadata.files]
