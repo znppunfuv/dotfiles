@@ -44,6 +44,7 @@ let g:coc_global_extensions = [
     \ 'coc-eslint',
     \ 'coc-tsserver',
     \ 'coc-stylelintplus',
+    \ 'coc-vetur',
     \ 'coc-python',
     \ 'coc-css',
     \ 'coc-sql',

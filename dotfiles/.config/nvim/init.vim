@@ -70,6 +70,7 @@ aug FileTypeIndent
     au FileType css         setl ts=2 sw=2 sts=2 et
     au FileType javascript* setl ts=2 sw=2 sts=2 et
     au FileType typescript* setl ts=2 sw=2 sts=2 et
+    au FileType vue         setl ts=2 sw=2 sts=2 et
     au FileType json        setl ts=2 sw=2 sts=2 et
     au FileType yml*        setl ts=2 sw=2 sts=2 et
     au FileType toml        setl ts=2 sw=2 sts=2 et

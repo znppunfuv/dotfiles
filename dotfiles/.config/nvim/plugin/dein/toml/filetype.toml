@@ -37,6 +37,10 @@ lua require'colorizer'.setup()
 '''
 
 [[plugins]]
+repo = 'storyn26383/vim-vue'
+on_ft = ['vue']
+
+[[plugins]]
 repo = 'lervag/vimtex'
 on_ft = ['tex', 'plaintex']
 hook_source = '''
