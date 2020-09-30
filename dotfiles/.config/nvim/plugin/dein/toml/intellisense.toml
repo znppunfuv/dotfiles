@@ -41,7 +41,6 @@ let g:coc_global_extensions = [
     \ 'coc-sh',
     \ 'coc-vimlsp',
     \ 'coc-rust-analyzer',
-    \ 'coc-import-cost',
     \ 'coc-eslint',
     \ 'coc-tsserver',
     \ 'coc-stylelintplus',
