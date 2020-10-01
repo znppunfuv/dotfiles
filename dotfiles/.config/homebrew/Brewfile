@@ -115,6 +115,7 @@ cask "vmware-fusion"
 cask "wireshark"
 cask "yubico-authenticator"
 cask "zappy"
+cask "zoomus"
 cask "zotero"
 mas "NextDNS", id: 1464122853
 mas "Xcode", id: 497799835
