@@ -32,7 +32,7 @@ zinit ice wait=0 lucid \
         fast-theme -q XDG:solarized-dark
     ' \
     atinit='zicompinit; zicdreplay'
-zinit light 'zdharma/fast-syntax-highlighting'
+zinit light zdharma/fast-syntax-highlighting
 
 zinit ice wait=0 lucid \
     pick='zsh-history-substring-search.zsh' \
