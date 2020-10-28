@@ -27,7 +27,7 @@ path=(
     '/usr/local/opt/grep/libexec/gnubin'(N-/)
     '/usr/local/opt/curl/bin'(N-/)
     '/usr/local/opt/openssl@1.1/bin'(N-/)
-    '/usr/local/opt/python@3.8/libexec/bin'(N-/)
+    '/usr/local/opt/python@3.9/libexec/bin'(N-/)
     # }}}
     "${path[@]}"
 )
