@@ -113,10 +113,3 @@ export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export RUST_BACKTRACE=1
 path=("${CARGO_HOME}/bin"(N-/) "${path[@]}")
-
-# GCP
-if (( ${+commands[gcloud]} )) && [[ "${OSTYPE}" =~ ^darwin.*$ ]]; then
-    local -r gcloud_path="$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
-    . "${gcloud_path}/path.zsh.inc"
-    . "${gcloud_path}/completion.zsh.inc"
-fi
