@@ -50,6 +50,8 @@ if [ "$(uname)" = 'Darwin' ]; then
     fi
     echo 'Install Homebrew apps...'
     brew bundle install --file "${DOTFILES_HOME}/.config/homebrew/Brewfile" --no-lock
+    chmod 755 /usr/local/share/zsh
+    chmod 755 /usr/local/share/zsh/site-functions
 fi
 
 ### asdf-vm ###
