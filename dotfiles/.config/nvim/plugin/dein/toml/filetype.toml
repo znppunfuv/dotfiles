@@ -30,6 +30,16 @@ repo = 'hail2u/vim-css3-syntax'
 on_ft = ['css', 'javascriptreact', 'typescriptreact']
 
 [[plugins]]
+repo = 'jparise/vim-graphql'
+on_ft = ['prisma']
+hook_add = '''
+aug Prisma
+    au!
+    au BufRead,BufNewFile *.prisma set filetype=graphql
+aug END
+'''
+
+[[plugins]]
 repo = 'norcalli/nvim-colorizer.lua'
 on_ft = ['css', 'html', 'javascriptreact', 'typescriptreact']
 hook_source = '''
