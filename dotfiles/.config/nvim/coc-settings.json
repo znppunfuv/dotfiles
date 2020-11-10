@@ -13,6 +13,7 @@
     "typescript",
     "typescriptreact",
     "css",
+    "prisma",
     "python"
   ],
   "cSpell.enabledLanguageIds": [

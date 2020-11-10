@@ -75,6 +75,7 @@ aug FileTypeIndent
     au FileType yml*        setl ts=2 sw=2 sts=2 et
     au FileType toml        setl ts=2 sw=2 sts=2 et
     au FileType dockerfile  setl ts=2 sw=2 sts=2 et
+    au FileType prisma      setl ts=2 sw=2 sts=2 et
 aug END
 
 """ Others """

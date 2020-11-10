@@ -109,6 +109,10 @@ aug END
 '''
 
 [[plugins]]
+repo = 'pantharshit00/vim-prisma'
+on_ft = ['prisma']
+
+[[plugins]]
 repo = 'pearofducks/ansible-vim'
 on_ft = ['yml']
 hook_add = '''
