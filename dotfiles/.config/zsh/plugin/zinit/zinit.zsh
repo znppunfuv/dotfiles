@@ -107,7 +107,7 @@ zinit ice wait=0 lucid \
             > "${gitignore_global}"
         echo -e "### direnv ###\n.envrc\n" >> "${gitignore_global}"
         echo -e "### Zsh ###\n*.zwc\n" >> "${gitignore_global}"
-        echo -e "### asdf ###\n.tool-versions\n" >> "${gitignore_global}"
+        echo -e "### fnm ###\n.nvm\n.node-version\n" >> "${gitignore_global}"
     ' \
     run-atpull atpull='%atclone' \
     atload="
@@ -119,6 +119,17 @@ zinit light wfxr/forgit
 zinit ice wait=0 lucid \
     atload="alias cdu='cd-gitroot'"
 zinit light mollifier/cd-gitroot
+
+zinit ice \
+    as='program' \
+    from='gh-r' \
+    ver='latest' \
+    mv='fnm-* -> fnm' \
+    pick='fnm' \
+    atclone='./fnm completions --shell=zsh >"${ZDOTDIR}/func_comp/_fnm"'  \
+    run-atpull atpull='%atclone' \
+    atload='. <(fnm env --use-on-cd --fnm-dir "${XDG_DATA_HOME}/fnm")'
+zinit light Schniz/fnm
 
 zinit ice wait=0 lucid \
     atinit='. "${ZDOTDIR}/.zshrc_lazy"'

@@ -1,1 +1,0 @@
-. "$(asdf direnv hook asdf)"

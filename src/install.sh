@@ -54,22 +54,6 @@ if [ "$(uname)" = 'Darwin' ]; then
     chmod 755 /usr/local/share/zsh/site-functions
 fi
 
-### asdf-vm ###
-echo 'Install asdf-vm'
-export ASDF_DATA_DIR="${XDG_DATA_HOME}/asdf"
-if type asdf >/dev/null 2>&1 && [ -d "${ASDF_DATA_DIR}" ]; then
-    echo 'asdf-vm is already installed. Skipped this step.'
-else
-    command git clone https://github.com/asdf-vm/asdf.git "${ASDF_DATA_DIR}" --branch v0.7.8
-    # shellcheck disable=SC1090
-    . "${ASDF_DATA_DIR}/asdf.sh"
-    export ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/asdfrc"
-    asdf plugin add direnv
-    asdf plugin add nodejs
-    /bin/bash "${ASDF_DATA_DIR}/plugins/nodejs/bin/import-release-team-keyring"
-    asdf install
-fi
-
 ### Rust ###
 echo 'Install Rust'
 export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
