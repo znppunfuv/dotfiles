@@ -82,7 +82,7 @@ export COMPOSE_DOCKER_CLI_BUILD=1
 export DOCKER_BUILDKIT=1
 
 ### direnv ###
-. <(direnv hook zsh)
+eval "$(direnv hook zsh)"
 
 ### Node.js ###
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
@@ -91,7 +91,7 @@ export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
 if (( ${+commands[pip]} )); then
     export PYTHONUSERBASE="${XDG_DATA_HOME}/pip"
     path=("${PYTHONUSERBASE}/bin"(N-/) "${path[@]}")
-    . <(pip completion --zsh)
+    eval "$(pip completion --zsh)"
 fi
 # Poetry
 # Repo: https://github.com/sdispater/poetry

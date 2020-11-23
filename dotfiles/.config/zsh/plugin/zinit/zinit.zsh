@@ -128,7 +128,7 @@ zinit ice \
     pick='fnm' \
     atclone='./fnm completions --shell=zsh >"${ZDOTDIR}/func_comp/_fnm"'  \
     run-atpull atpull='%atclone' \
-    atload='. <(fnm env --use-on-cd --fnm-dir "${XDG_DATA_HOME}/fnm")'
+    atload='eval "$(fnm env --use-on-cd --fnm-dir "${XDG_DATA_HOME}/fnm")"'
 zinit light Schniz/fnm
 
 zinit ice wait=0 lucid \
