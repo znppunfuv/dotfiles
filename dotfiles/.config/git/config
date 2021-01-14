@@ -30,6 +30,9 @@
     gpgsign = true
     template = ~/.config/git/templates/gitmessage.txt
 
+[pull]
+    ff = only
+
 [credential]
     helper = cache
 
