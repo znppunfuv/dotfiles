@@ -17,15 +17,15 @@ command mkdir -p "${ZSH_FUNCCOMP_DIR}"
 ### macOS ###
 if [ "$(uname)" = 'Darwin' ]; then
     ## Appearance: dark
-    defaults delete .GlobalPreferences AppleInterfaceStyleSwitchesAutomatically
-    defaults write .GlobalPreferences AppleInterfaceStyle -string "Dark"
+    # defaults delete .GlobalPreferences AppleInterfaceStyleSwitchesAutomatically
+    # defaults write .GlobalPreferences AppleInterfaceStyle -string "Dark"
     ## Accent color: yellow
-    defaults write .GlobalPreferences AppleAccentColor -int 2
+    # defaults write .GlobalPreferences AppleAccentColor -int 2
     ## Highlight color: yellow
-    defaults write .GlobalPreferences AppleHighlightColor -string "1.000000 0.937255 0.690196 Yellow"
+    # defaults write .GlobalPreferences AppleHighlightColor -string "1.000000 0.937255 0.690196 Yellow"
     ## Show scroll bars
-    defaults write .GlobalPreferences AppleShowScrollBars -string "Always"
-    defaults write .GlobalPreferences AppleScrollerPagingBehavior -bool true
+    # defaults write .GlobalPreferences AppleShowScrollBars -string "Always"
+    # defaults write .GlobalPreferences AppleScrollerPagingBehavior -bool true
     ## Dock
     defaults delete com.apple.dock orientation
     defaults write com.apple.dock tilesize -int 40
@@ -40,7 +40,7 @@ if [ "$(uname)" = 'Darwin' ]; then
     defaults -currentHost write com.apple.coreservices.useractivityd.plist ActivityReceivingAllowed -bool true
     defaults -currentHost write com.apple.coreservices.useractivityd.plist ActivityAdvertisingAllowed -bool true
     # Font smoothing
-    defaults -currentHost delete .GlobalPreferences AppleFontSmoothing
+    # defaults -currentHost delete .GlobalPreferences AppleFontSmoothing
 
     ## Finder
     chflags nohidden ~/Library
