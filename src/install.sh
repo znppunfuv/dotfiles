@@ -48,7 +48,7 @@ if [ "$(uname)" = 'Darwin' ]; then
     defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
     defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
     defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
-    defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+    defaults write -g AppleShowAllExtensions -bool true
     killall Finder
 
     killall Dock
