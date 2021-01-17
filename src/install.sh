@@ -27,35 +27,35 @@ if [ "$(uname)" = 'Darwin' ]; then
     # defaults write .GlobalPreferences AppleShowScrollBars -string "Always"
     # defaults write .GlobalPreferences AppleScrollerPagingBehavior -bool true
     ## Dock
-    defaults delete com.apple.dock orientation
-    defaults write com.apple.dock tilesize -int 40
-    defaults write com.apple.dock autohide -bool false
-    defaults write com.apple.dock magnification -bool false
-    defaults write com.apple.dock show-recents -bool false
-    defaults write com.apple.dock mineffect -string "scale"
-    ## Siri
-    defaults write com.apple.assistant.support.plist "Assistant Enabled" -bool false
-    defaults write com.apple.Siri StatusMenuVisible -bool false
-    # Handsoff
-    defaults -currentHost write com.apple.coreservices.useractivityd.plist ActivityReceivingAllowed -bool true
-    defaults -currentHost write com.apple.coreservices.useractivityd.plist ActivityAdvertisingAllowed -bool true
-    # Font smoothing
-    # defaults -currentHost delete .GlobalPreferences AppleFontSmoothing
+    # defaults delete com.apple.dock orientation
+    # defaults write com.apple.dock tilesize -int 40
+    # defaults write com.apple.dock autohide -bool false
+    # defaults write com.apple.dock magnification -bool false
+    # defaults write com.apple.dock show-recents -bool false
+    # defaults write com.apple.dock mineffect -string "scale"
+    # ## Siri
+    # defaults write com.apple.assistant.support.plist "Assistant Enabled" -bool false
+    # defaults write com.apple.Siri StatusMenuVisible -bool false
+    # # Handsoff
+    # defaults -currentHost write com.apple.coreservices.useractivityd.plist ActivityReceivingAllowed -bool true
+    # defaults -currentHost write com.apple.coreservices.useractivityd.plist ActivityAdvertisingAllowed -bool true
+    # # Font smoothing
+    # # defaults -currentHost delete .GlobalPreferences AppleFontSmoothing
 
-    ## Finder
-    chflags nohidden ~/Library
-    defaults write com.apple.finder AppleShowAllFiles -bool true
-    defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
-    defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-    defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
-    defaults write -g AppleShowAllExtensions -bool true
-    killall Finder
+    # ## Finder
+    # chflags nohidden ~/Library
+    # defaults write com.apple.finder AppleShowAllFiles -bool true
+    # defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+    # defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+    # defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+    # defaults write -g AppleShowAllExtensions -bool true
+    # killall Finder
 
-    killall Dock
-    # Menubar
-    defaults write com.apple.menuextra.battery ShowPercent -bool true
-    defaults write com.apple.menuextra.clock DateFormat -string "EEE MMM d HH:mm:ss"
-    killall SystemUIServer
+    # killall Dock
+    # # Menubar
+    # defaults write com.apple.menuextra.battery ShowPercent -bool true
+    # defaults write com.apple.menuextra.clock DateFormat -string "EEE MMM d HH:mm:ss"
+    # killall SystemUIServer
 
     # Homebrew
     echo 'Install Homebrew...'
