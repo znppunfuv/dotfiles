@@ -16,9 +16,32 @@ command mkdir -p "${ZSH_FUNCCOMP_DIR}"
 
 ### macOS ###
 if [ "$(uname)" = 'Darwin' ]; then
-    # defaults
-    defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
-    defaults write -globalDomain "AppleInterfaceStyle" -string "Dark"
+    ## Appearance: dark
+    defaults delete .GlobalPreferences AppleInterfaceStyleSwitchesAutomatically
+    defaults write .GlobalPreferences AppleInterfaceStyle -string "Dark"
+    ## Accent color: yellow
+    defaults write .GlobalPreferences AppleAccentColor -int 2
+    ## Highlight color: yellow
+    defaults write .GlobalPreferences AppleHighlightColor -string "1.000000 0.937255 0.690196 Yellow"
+    ## Show scroll bars
+    defaults write .GlobalPreferences AppleShowScrollBars -string "Always"
+    defaults write .GlobalPreferences AppleScrollerPagingBehavior -bool true
+    ## Dock
+    defaults delete com.apple.dock orientation
+    defaults write com.apple.dock tilesize -int 40
+    defaults write com.apple.dock autohide -bool false
+    defaults write com.apple.dock magnification -bool false
+    defaults write com.apple.dock show-recents -bool false
+    defaults write com.apple.dock mineffect -string "scale"
+    ## Siri
+    defaults write com.apple.assistant.support.plist "Assistant Enabled" -bool false
+    defaults write com.apple.Siri StatusMenuVisible -bool false
+    # Handsoff
+    defaults -currentHost write com.apple.coreservices.useractivityd.plist ActivityReceivingAllowed -bool true
+    defaults -currentHost write com.apple.coreservices.useractivityd.plist ActivityAdvertisingAllowed -bool true
+    # Font smoothing
+    defaults -currentHost delete .GlobalPreferences AppleFontSmoothing
+
     ## Finder
     chflags nohidden ~/Library
     defaults write com.apple.finder AppleShowAllFiles -bool true
@@ -27,10 +50,7 @@ if [ "$(uname)" = 'Darwin' ]; then
     defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
     defaults write NSGlobalDomain AppleShowAllExtensions -bool true
     killall Finder
-    ## Dock
-    defaults write com.apple.dock autohide -bool false
-    defaults write com.apple.dock magnification -bool false
-    defaults write com.apple.dock tilesize -int 40
+
     killall Dock
     # Menubar
     defaults write com.apple.menuextra.battery ShowPercent -bool true
