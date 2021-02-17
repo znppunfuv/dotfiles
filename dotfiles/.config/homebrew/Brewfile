@@ -121,5 +121,6 @@ cask "yubico-authenticator"
 cask "zappy"
 cask "zoom"
 cask "zotero"
+mas "Meeter", id: 1510445899
 mas "NextDNS", id: 1464122853
 mas "Xcode", id: 497799835
