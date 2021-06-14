@@ -50,6 +50,7 @@ brew "nkf"
 brew "nmap"
 brew "node"
 brew "openssh"
+brew "yamllint"
 brew "ykpers"
 brew "pam_yubico"
 brew "pinentry-mac"
@@ -121,6 +122,7 @@ cask "yubico-authenticator"
 cask "zappy"
 cask "zoom"
 cask "zotero"
-mas "Meeter", id: 1510445899
+mas "MeetingBar", id: 1532419400
 mas "NextDNS", id: 1464122853
+mas "stss", id: 1187772509
 mas "Xcode", id: 497799835
