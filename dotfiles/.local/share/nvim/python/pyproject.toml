@@ -7,7 +7,7 @@ license = "WTFPL"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-pynvim = "^0.4.2"
+pynvim = "^0.4.3"
 neovim-remote = "^2.4.0"
 
 [tool.poetry.dev-dependencies]
