@@ -93,6 +93,12 @@ else
     rustup component add rust-src
 fi
 
+### Node.js ###
+echo 'Install VOLTA'
+export VOLTA_HOME="${XDG_DATA_HOME}/volta"
+curl --proto '=https' --tlsv1.2 -sSf https://get.volta.sh | bash -s -- --skip-setup
+"${XDG_DATA_HOME}/volta/bin/volta" completions zsh >"${ZSH_FUNCCOMP_DIR}/_volta"
+
 ### Python ###
 echo 'Install Poetry'
 export POETRY_HOME="${XDG_DATA_HOME}/poetry"

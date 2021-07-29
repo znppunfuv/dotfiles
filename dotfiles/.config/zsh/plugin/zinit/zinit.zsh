@@ -120,17 +120,6 @@ zinit ice wait=0 lucid \
     atload="alias cdu='cd-gitroot'"
 zinit light mollifier/cd-gitroot
 
-zinit ice \
-    as='program' \
-    from='gh-r' \
-    ver='latest' \
-    mv='fnm-* -> fnm' \
-    pick='fnm' \
-    atclone='./fnm completions --shell=zsh >"${ZDOTDIR}/func_comp/_fnm"'  \
-    run-atpull atpull='%atclone' \
-    atload='eval "$(fnm env --use-on-cd --fnm-dir "${XDG_DATA_HOME}/fnm")"'
-zinit light Schniz/fnm
-
 zinit ice wait=0 lucid \
     atinit='. "${ZDOTDIR}/.zshrc_lazy"'
 zinit light zdharma/null
