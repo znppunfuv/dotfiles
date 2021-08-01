@@ -18,13 +18,16 @@ autoload -Uz _zinit
 alias zinit-update='zinit update --all && zinit self-update && zinit compile --all'
 
 ### Plugins ###
-zinit ice wait=1 lucid \
-    atclone='dircolors -b dircolors.256dark > color.zsh' \
+zinit ice \
+    as='command' \
+    from='gh-r' \
+    atclone='
+        ./starship init zsh > init.zsh
+        ./starship completions zsh > _starship
+    ' \
     atpull='%atclone' \
-    pick='color.zsh' \
-    nocompile='!' \
-    atload='zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"'
-zinit light seebi/dircolors-solarized
+    src='init.zsh'
+zinit light starship/starship
 
 zinit ice wait=0 lucid \
     atclone='
@@ -56,34 +59,6 @@ zinit light zsh-users/zsh-completions
 
 zinit ice wait=0 lucid
 zinit light hlissner/zsh-autopair
-
-zinit ice \
-    as='program' \
-    from='gh-r' \
-    ver='latest' \
-    mv='powerline-go* -> powerline-go' \
-    pick='powerline-go'
-zinit light justjanne/powerline-go
-powerline_precmd() {
-    PS1="$( \
-        "${ZINIT[HOME_DIR]}/plugins/justjanne---powerline-go/powerline-go" \
-        -error "$?" \
-        -shell zsh \
-        -newline \
-        -priority 'root,user,ssh,perms,git-branch,git-status,exit,cwd-path' \
-        -path-aliases '~/.local/share/ghq=@ghq'
-    )"
-}
-install_powerline_precmd() {
-    local func
-    for func in "${precmd_functions[@]}"; do
-        if [[ "${func}" == 'powerline_precmd' ]]; then
-            return 0
-        fi
-    done
-    precmd_functions+=('powerline_precmd')
-}
-install_powerline_precmd
 
 zinit ice wait=0 lucid \
     atload="
@@ -123,3 +98,11 @@ zinit light mollifier/cd-gitroot
 zinit ice wait=0 lucid \
     atinit='. "${ZDOTDIR}/.zshrc_lazy"'
 zinit light zdharma/null
+
+zinit ice wait=1 lucid \
+    atclone='dircolors -b dircolors.256dark > color.zsh' \
+    atpull='%atclone' \
+    pick='color.zsh' \
+    nocompile='!' \
+    atload='zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"'
+zinit light seebi/dircolors-solarized
