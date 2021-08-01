@@ -60,21 +60,6 @@ if (( ${+commands[fzf]} )); then
     '
     # Doc: https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings#changing-the-layout
     export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-    # git switch branch
-    gswb() {
-        local -r branches="$(command git --no-pager branch --all | command grep -v 'HEAD')"
-        local -r branch="$(echo "${branches}" | command fzf-tmux +m)" &&
-            command git checkout "$(
-                echo "${branch}" | command sed 's/.* //' | command sed 's#remotes/[^/]*/##'
-            )"
-    }
-    # git checkout tag
-    gcot() {
-        local -r tag="$(
-            command git --no-pager tag | \
-                command fzf-tmux +m --ansi --preview='command git show --color=always {}'
-            )" && command git checkout "${tag}"
-    }
 fi
 
 ### Docker ###
@@ -97,7 +82,6 @@ if (( ${+commands[pip]} )); then
     eval "$(pip completion --zsh)"
 fi
 # Poetry
-# Repo: https://github.com/sdispater/poetry
 export POETRY_HOME="${XDG_DATA_HOME}/poetry"
 path=("${POETRY_HOME}/bin"(N-/) "${path[@]}")
 

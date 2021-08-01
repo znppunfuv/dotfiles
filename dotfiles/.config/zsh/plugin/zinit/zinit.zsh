@@ -29,6 +29,19 @@ zinit ice \
     src='init.zsh'
 zinit light starship/starship
 
+zinit ice wait=0 blockf lucid
+zinit light zsh-users/zsh-completions
+
+zinit ice wait=0 lucid \
+    atload="
+        _zsh_autosuggest_start
+        ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
+    "
+zinit light zsh-users/zsh-autosuggestions
+
+zinit ice wait=0 lucid
+zinit light hlissner/zsh-autopair
+
 zinit ice wait=0 lucid \
     atclone='
         . ./fast-syntax-highlighting.plugin.zsh
@@ -49,19 +62,6 @@ zinit light zsh-users/zsh-history-substring-search
 
 zinit ice wait=0 lucid \
     atload="
-        _zsh_autosuggest_start
-        ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
-    "
-zinit light zsh-users/zsh-autosuggestions
-
-zinit ice wait=0 blockf lucid
-zinit light zsh-users/zsh-completions
-
-zinit ice wait=0 lucid
-zinit light hlissner/zsh-autopair
-
-zinit ice wait=0 lucid \
-    atload="
         bindkey '^G' anyframe-widget-cd-ghq-repository
         alias fcdr='anyframe-widget-cdr'
         alias fh='anyframe-widget-put-history'
@@ -78,17 +78,10 @@ zinit ice wait=0 lucid \
         mkdir -p "${git_config_dir}"
         gitignore_global="${git_config_dir}/ignore"
         forgit::ignore::get \
-            Backup GPG Linux Tags Vagrant Vim VisualStudioCode Windows Xcode macOS \
+            Backup GPG Linux Tags Vagrant Vim VisualStudioCode Windows Xcode macOS Zsh direnv \
             > "${gitignore_global}"
-        echo -e "### direnv ###\n.envrc\n" >> "${gitignore_global}"
-        echo -e "### Zsh ###\n*.zwc\n" >> "${gitignore_global}"
-        echo -e "### fnm ###\n.nvm\n.node-version\n" >> "${gitignore_global}"
     ' \
-    run-atpull atpull='%atclone' \
-    atload="
-        alias grst='gcf'
-        alias gst='gss'
-    "
+    run-atpull atpull='%atclone'
 zinit light wfxr/forgit
 
 zinit ice wait=0 lucid \
