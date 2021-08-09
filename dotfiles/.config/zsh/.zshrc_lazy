@@ -3,21 +3,18 @@ if (( ${+commands[brew]} )); then
     alias brew="env PATH=${(j':')path_default[@]} brew"
 fi
 
-# Repo: https://github.com/neovim/neovim
 if (( ${+commands[nvim]} )); then
     export EDITOR='nvim'
     alias e='nvim'
     alias nvimtex='NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim'
 fi
 
-# Repo: https://github.com/tmux/tmux
 if (( ${+commands[tmux]} )); then
     alias t='tmux attach || tmux new'
     # Repo: https://github.com/tmux-plugins/tpm
     alias tpm-update-plugins="${XDG_DATA_HOME}/tmux/plugin/tpm/bin/update_plugins all"
 fi
 
-# Repo: https://github.com/gpg/gnupg
 if (( ${+commands[gpg]} )); then
     # Start the gpg-agent if not already running
     if ! pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
@@ -34,7 +31,10 @@ if (( ${+commands[gpg]} )); then
     gpg-connect-agent updatestartuptty /bye >/dev/null
 fi
 
-# Repo: https://github.com/ogham/exa
+if (( ${+commands[bat]} )); then
+    alias cat='bat'
+fi
+
 if (( ${+commands[exa]} )); then
     alias ls='exa --group-directories-first --icons --classify'
     alias la='exa -a --group-directories-first --icons --classify'
@@ -42,15 +42,12 @@ if (( ${+commands[exa]} )); then
     alias tree='exa --tree --group-directories-first --icons --classify -I "node_modules"'
 fi
 
-# Repo: https://github.com/cjbassi/ytop
 if (( ${+commands[ytop]} )); then
     alias top='ytop -c solarized-dark'
 fi
 
-# Repo: https://github.com/motemen/ghq
 export GHQ_ROOT="${XDG_DATA_HOME}/ghq"
 
-# Repo: https://github.com/junegunn/fzf
 if (( ${+commands[fzf]} )); then
     # Doc: https://github.com/junegunn/fzf/wiki/Color-schemes#alternate-solarized-lightdark-theme
     export FZF_DEFAULT_OPTS='
