@@ -1,5 +1,4 @@
 tap "cjbassi/ytop"
-tap "derailed/k9s"
 tap "hashicorp/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask"
@@ -43,7 +42,6 @@ brew "libcbor"
 brew "libfido2"
 brew "libyaml"
 brew "mas"
-brew "minikube"
 brew "neovim"
 brew "nkf"
 brew "nmap"
@@ -56,7 +54,6 @@ brew "pinentry-mac"
 brew "ripgrep"
 brew "shellcheck"
 brew "shfmt"
-brew "tectonic"
 brew "tflint"
 brew "tmux"
 brew "unzip"
@@ -64,7 +61,6 @@ brew "wget"
 brew "ykman"
 brew "zsh"
 brew "cjbassi/ytop/ytop"
-brew "derailed/k9s/k9s"
 brew "hashicorp/tap/terraform"
 brew "nektos/tap/act"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD", "with-jansson"]
@@ -73,7 +69,6 @@ cask "alacritty"
 cask "alt-tab"
 cask "amazon-photos"
 cask "bitwarden"
-cask "blackhole-16ch"
 cask "blockblock"
 cask "cleanshot"
 cask "dash"
@@ -87,6 +82,7 @@ cask "font-jetbrains-mono-nerd-font"
 cask "font-noto-sans-cjk-jp"
 cask "font-noto-serif-cjk-jp"
 cask "ghidra"
+cask "gitify"
 cask "google-chrome-dev"
 cask "google-japanese-ime"
 cask "iina"
@@ -95,8 +91,6 @@ cask "keka"
 cask "keybase"
 cask "little-snitch"
 cask "logitech-options"
-cask "mathpix-snipping-tool"
-cask "michaelvillar-timer"
 cask "micro-snitch"
 cask "netnewswire"
 cask "notion"
@@ -117,8 +111,16 @@ cask "wireshark"
 cask "yubico-authenticator"
 cask "zoom"
 cask "zotero"
+mas "AdGuard for Safari", id: 1440147259
 mas "Amphetamine", id: 937984704
+mas "Bitwarden", id: 1352778147
+mas "Keepa - Price Tracker", id: 1533805339
 mas "Meeter", id: 1510445899
 mas "NextDNS", id: 1464122853
+mas "Notion Web Clipper", id: 1559269364
+mas "OctoLinker", id: 1549308269
+mas "Octotree", id: 1457450145
+mas "Refined GitHub", id: 1519867270
 mas "stss", id: 1187772509
+mas "Wappalyzer", id: 1520333300
 mas "Xcode", id: 497799835
