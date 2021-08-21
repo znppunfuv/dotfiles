@@ -105,7 +105,6 @@ cask "ticktick"
 cask "visual-studio-code-insiders"
 cask "vmware-fusion"
 cask "wireshark"
-cask "yubico-authenticator"
 cask "zoom"
 cask "zotero"
 mas "AdGuard for Safari", id: 1440147259
