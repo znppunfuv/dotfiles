@@ -14,14 +14,14 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-# env:
+#env:
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  # TERM: alacritty
+  #TERM: alacritty
 
 #window:
   # Window dimensions (changes require restart)
@@ -63,6 +63,12 @@
   #     - buttonless: Title bar, transparent background and no title bar buttons
   #decorations: full
 
+  # Background opacity
+  #
+  # Window opacity as a floating point number from `0.0` to `1.0`.
+  # The value `0.0` is completely transparent and `1.0` is opaque.
+  #opacity: 1.0
+
   # Startup Mode (changes require restart)
   #
   # Values for `startup_mode`:
@@ -102,33 +108,33 @@
   #multiplier: 3
 
 # Font configuration
-font:
+  font:
   # Normal (roman) font face
-  normal:
+    normal:
     # Font family
     #
     # Default:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: JetBrainsMono Nerd Font Mono
+      family: JetBrainsMono Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
-    style: Regular
+      style: Regular
 
   # Bold font face
-  bold:
+    bold:
     # Font family
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    # family: monospace
+    #family: monospace
 
     # The `style` can be specified to pick a specific face.
-    style: Bold
+      style: Bold
 
   # Italic font face
-  italic:
+    italic:
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
@@ -136,10 +142,10 @@ font:
     #family: monospace
 
     # The `style` can be specified to pick a specific face.
-    style: Italic
+      style: Italic
 
   # Bold italic font face
-  bold_italic:
+    bold_italic:
     # Font family
     #
     # If the bold italic family is not specified, it will fall back to the
@@ -147,7 +153,7 @@ font:
     #family: monospace
 
     # The `style` can be specified to pick a specific face.
-    style: Bold Italic
+      style: Bold Italic
 
   # Point size
   #size: 11.0
@@ -175,39 +181,39 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
-# Colors (Solarized Dark)
-colors:
-  # Default colors
-  primary:
-    background: '#002b36' # base03
-    foreground: '#839496' # base0
-
-  # Cursor colors
-  cursor:
-    text:   '#002b36' # base03
-    cursor: '#839496' # base0
-
-  # Normal colors
-  normal:
-    black:   '#073642' # base02
-    red:     '#dc322f' # red
-    green:   '#859900' # green
-    yellow:  '#b58900' # yellow
-    blue:    '#268bd2' # blue
-    magenta: '#d33682' # magenta
-    cyan:    '#2aa198' # cyan
-    white:   '#eee8d5' # base2
-
-  # Bright colors
-  bright:
-    black:   '#002b36' # base03
-    red:     '#cb4b16' # orange
-    green:   '#586e75' # base01
-    yellow:  '#657b83' # base00
-    blue:    '#839496' # base0
-    magenta: '#6c71c4' # violet
-    cyan:    '#93a1a1' # base1
-    white:   '#fdf6e3' # base3
+  # Colors (Solarized Dark)
+  colors:
+    # Default colors
+    primary:
+      background: '#002b36' # base03
+      foreground: '#839496' # base0
+  
+    # Cursor colors
+    cursor:
+      text:   '#002b36' # base03
+      cursor: '#839496' # base0
+  
+    # Normal colors
+    normal:
+      black:   '#073642' # base02
+      red:     '#dc322f' # red
+      green:   '#859900' # green
+      yellow:  '#b58900' # yellow
+      blue:    '#268bd2' # blue
+      magenta: '#d33682' # magenta
+      cyan:    '#2aa198' # cyan
+      white:   '#eee8d5' # base2
+  
+    # Bright colors
+    bright:
+      black:   '#002b36' # base03
+      red:     '#cb4b16' # orange
+      green:   '#586e75' # base01
+      yellow:  '#657b83' # base00
+      blue:    '#839496' # base0
+      magenta: '#6c71c4' # violet
+      cyan:    '#93a1a1' # base1
+      white:   '#fdf6e3' # base3
 
   # Cursor colors
   #
@@ -330,6 +336,13 @@ colors:
   #
   #indexed_colors: []
 
+  # Transparent cell backgrounds
+  #
+  # Whether or not `window.opacity` applies to all cell backgrounds or only to
+  # the default background. When set to `true` all cells will be transparent
+  # regardless of their background color.
+  #transparent_background_colors: false
+
 # Bell
 #
 # The bell is rung every time the BEL control character is received.
@@ -370,12 +383,6 @@ colors:
   #     args: ["Hello, World!"]
   #
   #command: None
-
-# Background opacity
-#
-# Window opacity as a floating point number from `0.0` to `1.0`.
-# The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.9
 
 #selection:
   # This string contains all characters that are used as separators for
@@ -451,6 +458,9 @@ background_opacity: 0.9
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
 
+# Offer IPC using `alacritty msg` (unix only)
+#ipc_socket: true
+
 #mouse:
   # Click settings
   #
@@ -525,13 +535,20 @@ background_opacity: 0.9
 #   - Right
 #   - Numeric identifier such as `5`
 #
-# - `action` (see key bindings)
+# - `action` (see key bindings for actions not exclusive to mouse mode)
+#
+# - Mouse exclusive actions:
+#
+#   - ExpandSelection
+#       Expand the selection to the current mouse cursor location.
 #
 # And optionally:
 #
 # - `mods` (see key bindings)
 #mouse_bindings:
-#  - { mouse: Middle, action: PasteSelection }
+#  - { mouse: Right,                 action: ExpandSelection }
+#  - { mouse: Right,  mods: Control, action: ExpandSelection }
+#  - { mouse: Middle, mode: ~Vi,     action: PasteSelection  }
 
 # Key bindings
 #
@@ -600,6 +617,8 @@ background_opacity: 0.9
 #   - ToggleFullscreen
 #   - SpawnNewInstance
 #       Spawn a new instance of Alacritty.
+#   - CreateNewWindow
+#       Create a new Alacritty window from the current process.
 #   - ClearLogNotice
 #       Clear Alacritty's UI warning and error notice.
 #   - ClearSelection
