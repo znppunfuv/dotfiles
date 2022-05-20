@@ -16,11 +16,11 @@ python-versions = "*"
 
 [[package]]
 name = "neovim-remote"
-version = "2.4.0"
+version = "2.5.1"
 description = "Control nvim processes using \"nvr\" commandline tool"
 category = "main"
 optional = false
-python-versions = ">=3.5"
+python-versions = ">=3.7"
 
 [package.dependencies]
 psutil = "*"
@@ -56,7 +56,7 @@ test = ["pytest (>=3.4.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "705ec0beb40f72339219f8efadb649e29b2ab0387fb8de1107c5ff8265434253"
+content-hash = "07f70c31982b6baa15dfaa8423e36502999b871133c433f41204f5c1fe3b530b"
 
 [metadata.files]
 greenlet = [
@@ -100,8 +100,8 @@ msgpack = [
     {file = "msgpack-1.0.0.tar.gz", hash = "sha256:9534d5cc480d4aff720233411a1f765be90885750b07df772380b34c10ecb5c0"},
 ]
 neovim-remote = [
-    {file = "neovim-remote-2.4.0.tar.gz", hash = "sha256:f199ebb61c3decf462feed4e7d467094ed38d8afaf43620736b5983a12fe2427"},
-    {file = "neovim_remote-2.4.0-py3-none-any.whl", hash = "sha256:4fa2ee4203dea2930ee19042dd22a25a97622cdda7258f99dd87ea0b417dee84"},
+    {file = "neovim-remote-2.5.1.tar.gz", hash = "sha256:4b3cc35463544c5747c895c52a0343cfdbba15d307647d7f57f1cce0c6a27d02"},
+    {file = "neovim_remote-2.5.1-py3-none-any.whl", hash = "sha256:08303c800d111fcd94e2a4cc7194f8a2c9e800005b22cfd2dc2bee5953560633"},
 ]
 psutil = [
     {file = "psutil-5.7.2-cp27-none-win32.whl", hash = "sha256:f2018461733b23f308c298653c8903d32aaad7873d25e1d228765e91ae42c3f2"},
