@@ -42,10 +42,6 @@ if (( ${+commands[exa]} )); then
     alias tree='exa --tree --group-directories-first --icons --classify -I "node_modules"'
 fi
 
-if (( ${+commands[ytop]} )); then
-    alias top='ytop -c solarized-dark'
-fi
-
 export GHQ_ROOT="${XDG_DATA_HOME}/ghq"
 
 if (( ${+commands[fzf]} )); then
@@ -66,11 +62,21 @@ export DOCKER_BUILDKIT=1
 ### direnv ###
 eval "$(direnv hook zsh)"
 
+### aqua ###
+export AQUA_ROOT_DIR="${XDG_DATA_HOME}/aquaproj-aqua"
+path=("${AQUA_ROOT_DIR}/bin"(N-/) ${path[@]})
+
 ### Node.js ###
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
 # VOLTA
 export VOLTA_HOME="${XDG_DATA_HOME}/volta"
 path=("${VOLTA_HOME}/bin"(N-/) ${path[@]})
+
+### Deno ###
+export DENO_INSTALL="${HOME}/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+export DVM_DIR="${HOME}/.dvm"
+export PATH="$DVM_DIR/bin:$PATH"
 
 ### Python ###
 if (( ${+commands[pip]} )); then

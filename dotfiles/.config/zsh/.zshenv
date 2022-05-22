@@ -26,7 +26,7 @@ path=(
     '/usr/local/opt/gnu-tar/libexec/gnubin'(N-/)
     '/usr/local/opt/grep/libexec/gnubin'(N-/)
     '/usr/local/opt/curl/bin'(N-/)
-    '/usr/local/opt/openssl@1.1/bin'(N-/)
+    '/usr/local/opt/openssl/bin'(N-/)
     '/usr/local/opt/python@3.9/libexec/bin'(N-/)
     '/usr/local/opt/php@7.4/bin'(N-/)
     # }}}
