@@ -1,9 +1,0 @@
-version: 2
-updates:
-  - package-ecosystem: pip
-    directory: /dotfiles/.local/share/nvim/python
-    schedule:
-      interval: daily
-    commit-message:
-      prefix: chore
-      include: scope

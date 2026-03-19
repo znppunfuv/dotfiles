@@ -1,0 +1,76 @@
+[user]
+  name = znppunfuv
+  email = znppunfuv@icloud.com
+  signingkey = ~/.ssh/id_ed25519_sk_rk
+
+[core]
+  editor = code --wait
+  autocrlf = input
+
+[diff]
+  tool = vscode
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+
+[difftool "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE
+
+[merge]
+  tool = vscode
+  conflictstyle = zdiff3
+
+[mergetool "vscode"]
+  cmd = code --wait $MERGED
+
+[pull]
+  ff = only
+
+[rebase]
+  autosquash = true
+  updateRefs = true
+
+[push]
+  autoSetupRemote = true
+
+[fetch]
+  prune = true
+
+[init]
+  defaultBranch = main
+
+[column]
+  ui = auto
+
+[branch]
+  sort = -committerdate
+
+[tag]
+  sort = -version:refname
+  gpgsign = true
+
+[rerere]
+  enabled = true
+  autoupdate = true
+
+[help]
+  autocorrect = prompt
+
+[log]
+  date = iso-local
+
+[alias]
+  undo = reset --soft HEAD~1
+  fixup = commit --amend --no-edit
+
+[gpg]
+  format = ssh
+
+[commit]
+  gpgsign = true
+
+[url "git@github.com:"]
+  insteadOf = https://github.com/
+
+[ghq]
+  root = ~/ghq

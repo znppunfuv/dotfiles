@@ -1,0 +1,29 @@
+# History
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_reduce_blanks
+setopt share_history
+setopt hist_ignore_space
+setopt hist_verify
+
+# VSCode
+# Doc: https://code.visualstudio.com/docs/terminal/shell-integration#_manual-installation
+[[ "${TERM_PROGRAM}" == "vscode" ]] && source "$(code --locate-shell-integration-path zsh)"
+
+# fzf
+# Doc: https://github.com/junegunn/fzf?tab=readme-ov-file#setting-up-shell-integration
+source <(fzf --zsh)
+
+# forgit
+# Doc: https://github.com/wfxr/forgit
+source "${HOMEBREW_PREFIX}/share/forgit/forgit.plugin.zsh"
+
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
+
+autoload -Uz compinit
+compinit
+
+# Starship
+# Doc: https://starship.rs/guide/
+eval "$(starship init zsh)"

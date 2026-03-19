@@ -1,7 +1,3 @@
-# dotfiles
+macOS only
 
-for macOS
-
-```sh
-curl -sSfL https://dotfiles.znppunfuv.com | sh
-```
+`sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply --source ~/ghq/github.com/znppunfuv/dotfiles znppunfuv`
